@@ -23,10 +23,11 @@ const SITE = {
   // Your name as it appears in author lists (highlighted in bold).
   me: "Rajat Sainju",
 
-  bio: `I'm an AI/ML scientist at the <a href="https://www.aps.anl.gov/">Advanced Photon Source</a>
+  bio: `<p>I'm an AI/ML scientist at the <a href="https://www.aps.anl.gov/">Advanced Photon Source</a>
     at Argonne National Laboratory. I build production LLM systems, including retrieval-augmented
     generation and agents, that help run a large accelerator facility, and I develop machine learning
-    for accelerators and materials science. My postdoctoral advisors are
+    for accelerators and materials science.</p>
+    <p>At Argonne, my postdoctoral advisors are
     <a href="https://www.anl.gov/profile/michael-david-borland">Dr. Michael Borland</a>, an Argonne
     Distinguished Fellow and the principal author of the ELEGANT accelerator code, and
     <a href="https://www.anl.gov/profile/yine-sun">Dr. Yine Sun</a>, who leads the APS Accelerator
@@ -34,7 +35,7 @@ const SITE = {
     and Engineering at the University of Connecticut, advised by
     <a href="https://zhu.mse.uconn.edu">Prof. Yuanyuan Zhu</a>, who directs UConn's center for
     in-situ/operando electron microscopy (InToEM). There I used deep learning to analyze in-situ
-    electron microscopy images and videos. I studied Engineering Physics at Ramapo College.`,
+    electron microscopy images and videos. I studied Engineering Physics at Ramapo College.</p>`,
 };
 
 // News: newest first. `image` is a picture; otherwise `emoji` + `tint` make a tile.
