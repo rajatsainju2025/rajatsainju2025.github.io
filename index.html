@@ -3,54 +3,308 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rajat Sainju</title>
-  <meta name="description" content="Rajat Sainju, AI/ML scientist at the Advanced Photon Source, Argonne National Laboratory. LLM systems, RAG and agents for accelerator facilities; machine learning for materials science.">
-  <meta property="og:title" content="Rajat Sainju">
-  <meta property="og:description" content="AI/ML scientist at the Advanced Photon Source, Argonne National Laboratory.">
-  <meta property="og:image" content="https://avatars.githubusercontent.com/u/202970519?v=4&s=560">
+  <title>Rajat Sainju · Learning to See, Then to Read</title>
+  <meta name="description" content="Rajat Sainju, AI/ML scientist at the Advanced Photon Source, Argonne National Laboratory. An illustrated story of research in in-situ electron microscopy, computer vision, and LLM systems for a scientific facility.">
+  <meta property="og:title" content="Learning to See, Then to Read · Rajat Sainju">
+  <meta property="og:description" content="From watching nanomaterials change in an electron microscope to developing AI that performs experiments and monitors particle accelerators.">
+  <meta property="og:image" content="https://rajatsainju2025.github.io/assets/img/wc/ring.jpg">
   <meta property="og:type" content="website">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛️</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="theme-color" content="#F6F1E7">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='36' fill='none' stroke='%23B4532A' stroke-width='12'/></svg>">
+  <link rel="preload" href="assets/fonts/newsreader-opsz.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/editorial.css">
 </head>
 <body>
-  <div class="page">
-    <aside class="sidebar" id="sidebar"></aside>
-    <main class="main">
-      <h1 id="name"></h1>
-      <p class="bio" id="bio"></p>
+  <a class="skip" href="#story">Skip to the story</a>
 
-      <section>
-        <h3>News</h3>
-        <div class="news-wrap">
-          <div class="news" id="news"></div>
-          <button class="news-arrow left" id="news-left" aria-label="Scroll news left"><i class="fa-solid fa-chevron-left"></i></button>
-          <button class="news-arrow right" id="news-right" aria-label="Scroll news right"><i class="fa-solid fa-chevron-right"></i></button>
+  <header class="masthead">
+    <div class="wrap masthead-row">
+      <a class="wordmark" href="#top">RAJAT SAINJU</a>
+      <nav aria-label="Sections">
+        <a href="#story">The story</a>
+        <a href="#numbers">In numbers</a>
+        <a href="#papers">Papers</a>
+        <a href="#software">Software</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+    <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <p class="kicker">A research story in three chapters</p>
+      <h1>Learning to See, Then to Read</h1>
+      <p class="dek">First I watched nanomaterials change inside an electron microscope. Then I taught computers to watch for me. Now I develop AI that performs experiments and monitors particle accelerators. Here is what each step taught me.</p>
+      <p class="byline">By <strong>Rajat Sainju</strong> · AI/ML Scientist, Advanced Photon Source, Argonne National Laboratory</p>
+    </section>
+
+    <figure class="plate plate-hero">
+      <img src="assets/img/wc/ring.jpg" width="1600" height="900" alt="Watercolor of a ring-shaped synchrotron building in green fields at dawn, a gold line tracing the electron orbit">
+      <figcaption>A storage-ring light source at dawn. Every illustration here was drawn as flat shapes, then painted by one OpenCV watercolor filter (<a href="#colophon">how</a>).</figcaption>
+    </figure>
+
+    <section id="story" class="prose">
+      <p class="lede"><span class="drop" aria-hidden="true">M</span><span class="sr-only">M</span>etals are never still. Inside a fusion reactor, helium plasma grows a porous fuzz on tungsten armour. Inside a fission reactor, neutrons knock atoms out of place in cascades that leave tiny defects behind. During my Ph.D. I watched changes like these happen in real time, inside an environmental electron microscope.</p>
+      <p>The microscope produced far more video than any person could read. So I built neural networks that segment and track what we see. Today, at Argonne's Advanced Photon Source, the reading problem has grown again: logbooks, work requests and live machine data from a facility that runs day and night.</p>
+      <p>The thread is the same. Each time, the hard part was turning a flood of observations into a few trustworthy numbers.</p>
+    </section>
+
+    <div class="stats wrap" id="stats">
+      <div><b id="stat-papers">10</b><span>papers, <span id="stat-years">2019 to 2026</span></span></div>
+      <div><b id="stat-nuclear">12</b><span>papers and abstracts on fission and fusion materials</span></div>
+      <div><b id="stat-coauthors">~80</b><span>co-authors</span></div>
+      <div><b id="stat-cites" class="c-language">…</b><span>citations, live from Semantic Scholar</span></div>
+    </div>
+
+    <!-- ===================================================== Chapter I == -->
+    <section class="chapter wrap" aria-labelledby="ch1">
+      <div class="chapter-text">
+        <div class="numeral c-materials" aria-hidden="true">I</div>
+        <p class="kicker c-materials">Chapter one · Materials for fission and fusion</p>
+        <h2 id="ch1">Metals that face the fire</h2>
+        <p class="chapter-dek">Reactors ask metals to survive what almost nothing else does: neutron bombardment, helium plasma and, in an accident, hot air. With an environmental TEM I could heat a sample in real gas, or put it under an ion beam, and film it changing at the nanometre scale.</p>
+      </div>
+      <figure class="plate">
+        <img src="assets/img/wc/microscope.jpg" width="1200" height="900" loading="lazy" alt="Watercolor of an electron microscope column on a lab console, a nanoparticle with an oxide shell on its monitor">
+      </figure>
+    </section>
+
+    <figure class="graphic wide" id="reactors">
+      <p class="g-title">Two kinds of reactor, two kinds of damage</p>
+      <p class="g-sub">Where the microscopy in this chapter and the next fits.</p>
+      <div class="reactor-grid">
+        <div class="reactor">
+          <img src="assets/img/wc/tokamak.jpg" width="1200" height="900" loading="lazy" alt="Watercolor of a fusion tokamak with its top cut away, a glowing pink plasma ring inside, copper field coils around it">
+          <p class="reactor-kicker c-materials">Fusion</p>
+          <ul>
+            <li>Tungsten armours the divertor of ITER and is likely to line future reactors such as DEMO.</li>
+            <li>Helium from the plasma grows a porous <em>nanofuzz</em> on its surface.</li>
+            <li>If an accident lets air in, hot tungsten oxidizes and can shed volatile, radioactive oxide dust.</li>
+          </ul>
+          <p class="reactor-papers"><a href="#nugget-fusion">Nuggets 1 and 2 ↓</a></p>
         </div>
-      </section>
+        <div class="reactor">
+          <img src="assets/img/wc/fission.jpg" width="1200" height="900" loading="lazy" alt="Watercolor of a pool-type fission reactor seen from a bridge, the core glowing blue under the water">
+          <p class="reactor-kicker c-vision">Fission</p>
+          <ul>
+            <li>Neutrons knock atoms out of place in cascades, again and again.</li>
+            <li>The displaced atoms gather into nanometre defect clusters, dislocation loops and voids.</li>
+            <li>How long those clusters live helps decide how much damage builds up, and when the metal starts to swell.</li>
+          </ul>
+          <p class="reactor-papers"><a href="#nugget-fission">Nugget 3 and chapter two ↓</a></p>
+        </div>
+      </div>
+      <figcaption>Context from Togaru, Sainju et al., <a href="https://doi.org/10.1016/j.matchar.2021.111016">Materials Characterization 2021</a>, Sainju et al., <a href="https://doi.org/10.1016/j.actamat.2024.120282">Acta Materialia 2024</a> and <a href="https://doi.org/10.1038/s41598-022-19697-1">Scientific Reports 2022</a>.</figcaption>
+    </figure>
 
-      <section>
-        <h3>Projects</h3>
-        <div id="projects"></div>
-        <details class="abstracts">
-          <summary>Conference abstracts</summary>
-          <ul id="abstracts"></ul>
-        </details>
-      </section>
+    <section class="prose" id="nugget-fusion">
+      <p class="nugget-label"><span class="c-materials">Fusion</span> · Nugget 1</p>
+      <blockquote class="pull">“Damage can be a shield.”</blockquote>
+      <p>You would expect helium-damaged, spongy tungsten to oxidize faster than the pristine metal if air leaks into a reactor. We measured it directly, in an environmental TEM at atmospheric pressure, and got the first kinetic data for substrate-free nanofuzz. In 1 bar of dry air at 500 °C, it oxidized about seven times <em>slower</em> than pristine tungsten. A durable, amorphous skin of oxide, likely promoted by the irradiation, kept it passivated.</p>
+    </section>
 
-      <section>
-        <h3>Software</h3>
-        <div class="software" id="software"></div>
-      </section>
+    <figure class="graphic narrow" id="w-chart">
+      <p class="g-title">Nanofuzz oxidized about 7× slower</p>
+      <p class="g-sub">Parabolic oxidation rate at 500 °C in 1 bar dry air.</p>
+      <div id="w-bars"></div>
+      <figcaption>Nanofuzz rate measured in situ (<span id="w-kp400"></span> at 400 °C). The pristine bar is drawn from the paper's “about seven times” comparison with literature values for bulk W. Sainju et al., <a href="https://doi.org/10.1016/j.actamat.2024.120282">Acta Materialia 2024</a>.</figcaption>
+    </figure>
 
-      <footer>© <span id="year"></span> Rajat Sainju</footer>
-    </main>
-  </div>
+    <section class="prose">
+      <p class="nugget-label"><span class="c-materials">Fusion</span> · Nugget 2</p>
+      <blockquote class="pull">“Which face you oxidize can matter more than 100 degrees.”</blockquote>
+      <p>In the first in-situ ETEM study of tungsten oxidation, we heated pristine and ion-irradiated tungsten from 500 to 900 °C and saw two very different oxide scales grow side by side. A nanocrystalline scale on one grain orientation grew much faster at 800 °C than a highly textured scale did at 900 °C. For a reactor wall, grain orientation, not just temperature, sets the pace (Togaru, Sainju et al., <a href="https://doi.org/10.1016/j.matchar.2021.111016">Materials Characterization 2021</a>).</p>
+    </section>
+
+    <section class="prose" id="nugget-fission">
+      <p class="nugget-label"><span class="c-vision">Fission</span> · Nugget 3</p>
+      <blockquote class="pull">“Radiation damage is a movie, not a photograph.”</blockquote>
+      <p>At Argonne's IVEM-Tandem facility, which recreates reactor-like irradiation inside a microscope, nickel was bombarded with 1 MeV krypton ions at 700 °C and filmed at 103 frames per second. Defect clusters about 8 nm across flickered into existence and faded, some within 19 milliseconds, some after more than 6 seconds. Those lifetimes are the physics. Measuring them meant following thousands of tiny, fading dots by hand, which is where chapter two begins.</p>
+    </section>
+
+    <section class="prose">
+      <p class="nugget-label">Beyond the reactor · Nugget 4</p>
+      <blockquote class="pull">“The average hides the story.”</blockquote>
+      <p>The same microscope works on catalysts. We oxidized 207 nickel nanoparticles, 4 to 50 nm across, at 600 °C in a gas cell. Measured all together, the batch took about 80 seconds to turn to oxide. Followed one by one, single particles took anywhere from about one second to more than a minute.</p>
+      <p>Size decides the ending. In stage one, oxide nucleates and eats inward a fixed distance, about 5.5 nm. If the particle's radius is smaller than that, it simply becomes a solid ball of oxide. If it is larger, nickel keeps diffusing outward through the oxide, leaves vacancies behind, and the particle hollows out.</p>
+    </section>
+
+    <figure class="graphic" id="ni-explorer">
+      <p class="g-title">Will this particle end up hollow?</p>
+      <p class="g-sub">Drag the starting radius, then press play. The dashed ring marks the critical thickness, 5.52 ± 1.45 nm, measured on large particles.</p>
+      <div class="ni-grid">
+        <svg id="ni-svg" viewBox="0 0 400 300" role="img" aria-labelledby="ni-outcome"></svg>
+        <div class="ni-controls">
+          <label for="ni-radius">Starting radius: <output id="ni-radius-out" for="ni-radius">12 nm</output></label>
+          <input id="ni-radius" type="range" min="2" max="25" step="0.5" value="12">
+          <div class="scale-row" aria-hidden="true"><span>2 nm</span><span>25 nm</span></div>
+          <button type="button" class="btn" id="ni-play">Play oxidation</button>
+          <p id="ni-stage" class="ni-stage" aria-live="polite"></p>
+          <p id="ni-outcome" class="ni-outcome"></p>
+        </div>
+      </div>
+      <figcaption>Drawn to scale. The outcome rule, the critical thickness and the timings come from Sainju et al., <a href="https://doi.org/10.1021/acsnano.2c00742">ACS Nano 2022</a>. The animation itself is schematic.</figcaption>
+    </figure>
+
+    <!-- ==================================================== Chapter II == -->
+    <section class="chapter wrap flip" aria-labelledby="ch2">
+      <figure class="plate">
+        <img src="assets/img/wc/frames.jpg" width="1200" height="900" loading="lazy" alt="Watercolor of five grainy microscope video frames on a desk, each defect boxed and numbered">
+      </figure>
+      <div class="chapter-text">
+        <div class="numeral c-vision" aria-hidden="true">II</div>
+        <p class="kicker c-vision">Chapter two · Teaching computers to watch</p>
+        <h2 id="ch2">The video was too long to read</h2>
+        <p class="chapter-dek">The irradiation video from nugget 3 ran 1,200 frames, under 12 seconds. Labelling every defect in it took three experts about 20 weeks.</p>
+      </div>
+    </section>
+
+    <section class="prose">
+      <p class="nugget-label"><span class="c-vision">Fission</span> · Nugget 5</p>
+      <blockquote class="pull">“Judge the model by the physics, not the leaderboard.”</blockquote>
+      <p>DefectTrack follows defect clusters, about 20 pixels wide, as they flicker into existence under an ion beam and fade away. Standard tracking scores tell you how often boxes match. Materials scientists care about something else: the distribution of defect lifetimes, which hints at what kind of defect each one is. So we tested the tracker the way you would test an expert.</p>
+    </section>
+
+    <figure class="graphic" id="tracker">
+      <div class="g-head">
+        <p class="g-title">Watch a tracker work</p>
+        <span class="badge">Simulation</span>
+      </div>
+      <p class="g-sub">Synthetic frames, one every 9.7 ms, with defects about 20 px wide, as in the real video. Each colour is one tracked identity. A dashed box is a frame where a faint defect slips past the detector and the tracker fills the gap.</p>
+      <div class="tracker-grid">
+        <div class="tracker-stage">
+          <canvas id="tracker-canvas" width="640" height="400" role="img" aria-label="Simulated grainy microscope video with defects appearing and fading, each boxed by a tracker"></canvas>
+          <div class="tracker-clock" id="tracker-clock">0.0 ms</div>
+        </div>
+        <div class="tracker-side">
+          <div class="btn-row">
+            <button type="button" class="btn" id="tracker-play">Pause</button>
+            <button type="button" class="btn ghost" id="tracker-boxes" aria-pressed="true">Boxes on</button>
+          </div>
+          <p class="side-label">Lifetimes of finished tracks</p>
+          <svg id="tracker-hist" viewBox="0 0 260 150" role="img" aria-label="Histogram of simulated defect lifetimes"></svg>
+          <p class="side-note" id="tracker-count">0 tracks finished</p>
+        </div>
+      </div>
+      <figcaption>Illustration only. Lifetimes are drawn from an exponential distribution; the real ones in the paper ran from 19.4 ms to 6.4 s.</figcaption>
+    </figure>
+
+    <figure class="graphic" id="ks-chart">
+      <p class="g-title">Two of four experts were measurably off. The tracker was not.</p>
+      <p class="g-sub">Each lifetime distribution tested against the hand-labelled truth (Kolmogorov–Smirnov). A dot in the shaded band, p &lt; 0.05, differs significantly from the truth.</p>
+      <div id="ks-svg" class="chart"></div>
+      <figcaption>DefectTrack processed the whole video in 57 seconds. The experts averaged 5.25 hours to track a tenth of the defects. Sainju et al., <a href="https://doi.org/10.1038/s41598-022-19697-1">Scientific Reports 2022</a>, Table 3.</figcaption>
+    </figure>
+
+    <section class="prose">
+      <p>The same idea guided our earlier segmentation network, DefectSegNet. It finds dislocations, precipitates and voids in HT-9, a martensitic steel studied for reactor service, imaged before and after neutron irradiation at 412 °C. A pixel-accuracy score is a means, not an end. What matters is whether the dislocation densities and the void and precipitate sizes you compute from its output match the truth.</p>
+    </section>
+
+    <figure class="graphic" id="seg-chart">
+      <p class="g-title">A segmentation network beat the expert average on 8 of 10 measurements</p>
+      <p class="g-sub">Error against hand-labelled truth for defects in HT-9 steel. <span class="key"><i class="k-expert"></i>each expert</span> <span class="key"><i class="k-avg"></i>expert average</span> <span class="key"><i class="k-model"></i>DefectSegNet</span></p>
+      <div id="seg-svg" class="chart"></div>
+      <figcaption>Roberts, Haile, Sainju et al., <a href="https://doi.org/10.1038/s41598-019-49105-0">Scientific Reports 2019</a>, Tables 2 and 3. Size spreads (standard deviations) are left out here.</figcaption>
+    </figure>
+
+    <!-- =================================================== Chapter III == -->
+    <section class="chapter wrap" aria-labelledby="ch3">
+      <div class="chapter-text">
+        <div class="numeral c-language" aria-hidden="true">III</div>
+        <p class="kicker c-language">Chapter three · At the Advanced Photon Source</p>
+        <h2 id="ch3">Machines that read the facility</h2>
+        <p class="chapter-dek">A light source keeps its memory in logbooks, documents, work requests, chat and live control-system data. The answers staff need are in there, scattered.</p>
+      </div>
+      <figure class="plate">
+        <img src="assets/img/wc/logbooks.jpg" width="1200" height="900" loading="lazy" alt="Watercolor of a desk at night with stacks of logbooks and threads of light running to a laptop, the ring building seen through the window">
+      </figure>
+    </section>
+
+    <section class="prose">
+      <p class="nugget-label">Nugget 6</p>
+      <blockquote class="pull">“An answer is only as good as its citations.”</blockquote>
+      <p>APS-RAG lets staff ask plain questions and get answers that point to their sources. It searches three ways at once, then checks its own evidence. When the evidence is weak, it rewrites the question and searches again before it answers. We evaluate it on APS-Bench, a benchmark grounded in the facility's real operations.</p>
+    </section>
+
+    <figure class="graphic wide" id="rag">
+      <p class="g-title">How a question travels through APS-RAG</p>
+      <p class="g-sub">Pick a step.</p>
+      <ol class="rag-steps" id="rag-steps"></ol>
+      <div class="rag-detail">
+        <p id="rag-text" aria-live="polite"></p>
+        <ul class="rag-sources" id="rag-sources" aria-label="Sources searched"></ul>
+      </div>
+      <figcaption>A schematic of the pipeline described in Sainju et al., <a href="https://arxiv.org/abs/2607.24663">arXiv 2026</a>. <a href="https://github.com/rajatsainju2025/aps-rag">Code on GitHub</a>.</figcaption>
+    </figure>
+
+    <section class="prose">
+      <p class="nugget-label">Nugget 7</p>
+      <blockquote class="pull">“Production is a different sport.”</blockquote>
+      <p>A demo has to answer one question well. A deployed agent has to keep answering, safely, for people who rely on it. With colleagues across the APS and Argonne, I helped write down what that takes, from beamline control to knowledge retrieval, in <a href="https://arxiv.org/abs/2609.36362">a perspective on deploying agents at user facilities</a>.</p>
+    </section>
+
+    <!-- ===================================================== Numbers == -->
+    <section id="numbers" class="wrap block">
+      <p class="kicker">The work, in numbers</p>
+      <h2>Three themes, one drift</h2>
+      <p class="block-dek">Each dot is a paper, sized by its citations; a gold halo marks work on fission or fusion materials. Rings are conference abstracts. Hover or tap a dot.</p>
+      <div id="timeline" class="chart"></div>
+    </section>
+
+    <section class="wrap block">
+      <h2>Papers and the people on them</h2>
+      <p class="block-dek">Coloured dots are papers; small dots are co-authors. I am the dark dot in the middle. Hover or tap a person to see what we wrote together.</p>
+      <div id="network" class="network"></div>
+    </section>
+
+    <!-- ===================================================== Index == -->
+    <section id="papers" class="wrap block">
+      <div class="index-head">
+        <h2>Papers</h2>
+        <div class="filters" role="group" aria-label="Filter papers by theme" id="filters"></div>
+      </div>
+      <ol class="index" id="index"></ol>
+      <details class="abstracts">
+        <summary>Conference abstracts</summary>
+        <ul id="abstracts"></ul>
+      </details>
+    </section>
+
+    <section id="dispatches" class="wrap block">
+      <h2>Dispatches</h2>
+      <ol class="dispatches" id="news"></ol>
+    </section>
+
+    <section id="software" class="wrap block">
+      <h2>Software</h2>
+      <ul class="software" id="software-list"></ul>
+    </section>
+  </main>
+
+  <div class="tip" id="tip" role="status" hidden></div>
+
+  <footer id="about">
+    <img class="skyline" src="assets/img/wc/skyline.jpg" width="1600" height="700" loading="lazy" alt="Watercolor of the Chicago skyline at dusk over Lake Michigan">
+    <div class="wrap footer-grid">
+      <div>
+        <p class="f-head">About</p>
+        <p id="bio"></p>
+      </div>
+      <div>
+        <p class="f-head">Elsewhere</p>
+        <ul class="links" id="links"></ul>
+      </div>
+      <div id="colophon">
+        <p class="f-head">Colophon</p>
+        <p>Illustrations are flat SVG scenes painted by <a href="https://github.com/rajatsainju2025/rajatsainju2025.github.io/blob/main/tools/watercolor.py">an OpenCV watercolor filter</a>: smoothing, wobble, wet edges, granulation and paper grain. Charts are hand-built SVG from the papers' own tables. Type is Newsreader and Libre Franklin.</p>
+      </div>
+    </div>
+    <p class="wrap copyright">© <span id="year"></span> Rajat Sainju</p>
+  </footer>
 
   <script src="assets/js/data.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/story.js"></script>
+  <script src="assets/js/editorial.js"></script>
 </body>
 </html>

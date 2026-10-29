@@ -3,23 +3,51 @@
 Source for my personal website, served by GitHub Pages at
 https://rajatsainju2025.github.io.
 
-It is a plain static site: no framework and no build step.
+This branch (`feature/editorial-dataviz`) tries an editorial design: the site
+reads as an illustrated story in three chapters, with interactive charts built
+from the papers' own numbers. The brief behind it is in
+[`docs/DESIGN_BRIEF.md`](docs/DESIGN_BRIEF.md).
+
+It is a plain static site: no framework and no build step. Fonts are
+self-hosted, so the page works without third-party requests (only the live
+citation and star counts call out).
 
 ## Editing
 
-All content is in [`assets/js/data.js`](assets/js/data.js):
+- [`assets/js/data.js`](assets/js/data.js): profile, news, papers, abstracts
+  and software, exactly as on `main`. The paper index, the dispatches, the
+  software list and the co-author network are all generated from it.
+- [`assets/js/story.js`](assets/js/story.js): the numbers behind the story's
+  charts, each copied from a paper and labelled with its source, plus the
+  theme (vision, materials, language) and field (fission, fusion) of each
+  paper.
+- [`index.html`](index.html): the story text itself.
 
-- `SITE`: name, title, bio, email, location, CV and social links. An empty
-  string hides that item.
-- `NEWS`: the scrolling news cards, newest first. Each card uses an `image`,
-  or an `emoji` with a `tint` (violet, amber, teal, rose, sky, slate, lime).
-- `PROJECTS`: papers, each with a thumbnail `image` or a text `card`, a TLDR
-  and links. `s2` is the Semantic Scholar paper ID used for the live citation
-  count.
-- `ABSTRACTS`: conference abstracts, shown in a collapsed list.
-- `SOFTWARE`: repository cards. Stars and forks are fetched live from GitHub.
+A new paper in `data.js` shows up everywhere automatically. Give it a theme in
+`PAPER_THEME` (and a field in `PAPER_FIELD` if it is nuclear work) and a short
+label in `PAPER_SHORT`.
 
-Push to `main` and the site updates within a minute or two.
+## Illustrations
+
+Every painting comes from one pipeline, so they share a hand:
+
+```bash
+pip install opencv-python-headless playwright
+python tools/scenes.py              # flat SVG scenes -> Chromium -> watercolor
+python tools/scenes.py tokamak      # just one scene
+python tools/watercolor.py photo.jpg out.jpg --seed 3   # any image
+```
+
+`tools/scenes.py` draws each scene as flat SVG shapes and renders it with
+Chromium. `tools/watercolor.py` then paints it: edge-preserving smoothing and
+colour quantization for flat washes, a noise field that wobbles every edge,
+darkened wet edges, granulation and blooms, subtractive glazing onto warm
+paper, a faint pencil under-drawing, and a deckled border. If Playwright's
+bundled Chromium is missing, point `CHROMIUM` at a Chrome binary.
+
+The news thumbnails in `assets/img/wc/news_*.jpg` are the originals run
+through the same filter; the page falls back to the original if one is
+missing.
 
 ## Previewing locally
 
@@ -31,13 +59,16 @@ python -m http.server 8000
 ## Layout
 
 ```
-index.html            page shell
-assets/css/style.css  styles
-assets/js/data.js     content
-assets/js/main.js     renders the content
-assets/img/           thumbnails (figures from the papers)
+index.html               the story
+assets/css/editorial.css styles
+assets/js/data.js        content shared with main
+assets/js/story.js       chart data from the papers
+assets/js/editorial.js   renders charts, simulations, network and lists
+assets/img/wc/           watercolor illustrations
+assets/img/              paper figures and original news art
+assets/fonts/            Newsreader and Libre Franklin (SIL Open Font License)
+tools/                   illustration pipeline
+docs/DESIGN_BRIEF.md     the design brief
 ```
 
-The layout is modelled on [mattdeitke.com](https://mattdeitke.com/) and was
-written from scratch. Paper figures are reproduced from open-access
-publications (CC BY 4.0).
+Paper figures are reproduced from open-access publications (CC BY 4.0).
