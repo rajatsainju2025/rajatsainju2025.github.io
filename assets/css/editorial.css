@@ -286,6 +286,9 @@ a:hover { color: var(--ink); }
 .index .links a { margin-right: 14px; }
 .index .cites { color: var(--ink-3); font-variant-numeric: tabular-nums; }
 .index li[hidden] { display: none; }
+.pager { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding-top: 18px; }
+.pager-count { margin: 0; font-family: var(--sans); font-size: 14px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.pager .btn-row { margin-left: auto; }
 
 .abstracts { margin-top: 20px; font-family: var(--sans); font-size: 14px; }
 .abstracts summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; align-items: center; }

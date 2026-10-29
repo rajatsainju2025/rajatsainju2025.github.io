@@ -592,7 +592,7 @@ function renderIndex() {
         <p class="authors" id="authors-${i}">${authorsHTML(p.authors, i)}</p>
         <p class="meta"><span class="venue">${esc(p.venue)}</span><span class="theme-tag" style="color:${t.color}">${t.short}</span>${field ? `<span class="theme-tag field-tag">${FIELDS[field].label}</span>` : ""}<span class="cites" data-s2="${p.s2}"></span></p>
         <p class="tldr">${p.tldr}</p>
-        <p class="meta links">${links}<a href="https://www.semanticscholar.org/paper/${p.s2}">Semantic Scholar</a></p>
+        <p class="meta links">${links}${p.s2 && !p.s2.startsWith("DOI:") ? `<a href="https://www.semanticscholar.org/paper/${p.s2}">Semantic Scholar</a>` : ""}</p>
       </div>
     </li>`;
   }).join("");
@@ -602,17 +602,45 @@ function renderIndex() {
     const p = PROJECTS[b.dataset.more];
     $(`authors-${b.dataset.more}`).innerHTML = p.authors.map((a) => (a === SITE.me ? `<span class="me">${esc(a)}</span>` : esc(a))).join(", ");
   });
+  // Paging: the newest PAGE papers first, then PAGE more at a time, or all at once.
+  const PAGE = 5;
+  let filter = "all", shown = PAGE;
+  const matches = (li) => filter === "all" || (filter === "nuclear" ? li.dataset.nuclear === "yes" : li.dataset.theme === filter);
+  function apply(focusFrom) {
+    const rows = [...document.querySelectorAll("#index li")].filter(matches);
+    document.querySelectorAll("#index li").forEach((li) => { li.hidden = true; });
+    rows.forEach((li, i) => { li.hidden = i >= shown; });
+    const n = rows.length, visible = Math.min(shown, n);
+    const buttons = [];
+    if (visible < n) {
+      buttons.push(`<button type="button" class="btn ghost" data-page="next">Show next ${Math.min(PAGE, n - visible)}</button>`);
+      buttons.push(`<button type="button" class="btn" data-page="all">Show all ${n}</button>`);
+    } else if (n > PAGE) {
+      buttons.push(`<button type="button" class="btn ghost" data-page="fewer">Show fewer</button>`);
+    }
+    $("pager").innerHTML = `<p class="pager-count" aria-live="polite">Showing ${visible} of ${n} papers</p><div class="btn-row">${buttons.join("")}</div>`;
+    if (focusFrom != null && rows[focusFrom]) rows[focusFrom].querySelector("h3 a").focus();
+  }
+  $("pager").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-page]");
+    if (!b) return;
+    const before = shown;
+    if (b.dataset.page === "next") shown += PAGE;
+    if (b.dataset.page === "all") shown = Infinity;
+    if (b.dataset.page === "fewer") { shown = PAGE; $("papers").scrollIntoView({ behavior: REDUCED ? "auto" : "smooth" }); }
+    apply(b.dataset.page === "fewer" ? null : before);
+  });
   $("filters").addEventListener("click", (e) => {
     const b = e.target.closest("button");
     if (!b) return;
     $("filters").querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b));
     paint();
-    const k = b.dataset.theme;
-    document.querySelectorAll("#index li").forEach((li) => {
-      li.hidden = !(k === "all" || (k === "nuclear" ? li.dataset.nuclear === "yes" : li.dataset.theme === k));
-    });
+    filter = b.dataset.theme;
+    shown = PAGE;
+    apply();
   });
   paint();
+  apply();
   $("abstracts").innerHTML = ABSTRACTS.map((a) => `<li>${a.year} · <a href="${a.url}">${esc(a.title)}</a></li>`).join("");
 }
 
