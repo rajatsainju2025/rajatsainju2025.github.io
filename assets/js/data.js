@@ -65,14 +65,35 @@ const NEWS = [
       <a href="https://doi.org/10.1016/j.actamat.2024.120282">Acta Materialia</a>.`,
   },
   {
+    date: "Apr, 2023", image: "assets/img/news_speaker.jpg",
+    text: `Named the Spring 2023 Outstanding Graduate Student Speaker in
+      <a href="https://mse.engr.uconn.edu/">Materials Science and Engineering</a> at UConn. 🎤`,
+  },
+  {
     date: "Sep, 2022", image: "assets/img/news_defecttrack.jpg",
     text: `<a href="https://doi.org/10.1038/s41598-022-19697-1">DefectTrack</a>, real-time tracking of
       defects in in-situ TEM videos, published in Scientific Reports.`,
   },
   {
+    date: "Aug, 2022", image: "assets/img/news_scholar.jpg",
+    text: `Won an <a href="https://microscopy.org/2022-M-M-Student-Scholars">M&amp;M 2022 Student Scholar
+      Award</a> for real-time tracking of irradiation defects in in-situ TEM videos. 🏆`,
+  },
+  {
     date: "Apr, 2022", image: "assets/img/news_oxidation.jpg",
     text: `Single-nanoparticle Ni oxidation, from nucleation to thickening, published in
       <a href="https://doi.org/10.1021/acsnano.2c00742">ACS Nano</a>.`,
+  },
+  {
+    date: "Aug, 2021", image: "assets/img/news_mm2021.jpg",
+    text: `Presented deep learning-assisted in-situ ETEM of
+      <a href="https://doi.org/10.1017/S1431927621007984">nanocatalyst sintering and regeneration</a>
+      at M&amp;M 2021.`,
+  },
+  {
+    date: "Mar, 2021", image: "assets/img/news_matchar.jpg",
+    text: `Tungsten oxidation watched in situ by environmental TEM, led by Maanas Togaru, published in
+      <a href="https://doi.org/10.1016/j.matchar.2021.111016">Materials Characterization</a>.`,
   },
   {
     date: "Sep, 2019", image: "assets/img/news_segmentation.jpg",

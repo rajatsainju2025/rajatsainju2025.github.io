@@ -263,13 +263,143 @@ SCENES["news_segmentation"] = svg(
     sky("s8", [(0, "#cfe3ff"), (.6, "#e9e4ff"), (1, "#fde8f1")]),
 )
 
+# 9. Apr 2023 - outstanding graduate student speaker: podium and microphone in a spotlight, confetti
+def confetti(n, seed, box, colors):
+    rnd = random.Random(seed); x0, y0, x1, y1 = box
+    return "".join(f'<rect x="{rnd.uniform(x0, x1):.0f}" y="{rnd.uniform(y0, y1):.0f}" width="{rnd.uniform(8, 16):.0f}" height="{rnd.uniform(5, 9):.0f}" rx="2" fill="{rnd.choice(colors)}" transform="rotate({rnd.uniform(-60, 60):.0f} 400 400)"/>'
+                   for _ in range(n))
+curtain_l = ('<path d="M0 0 H190 Q150 200 196 400 Q160 600 206 800 H0Z" fill="#c0435b"/>'
+             + "".join(f'<path d="M{x} 60 q-24 360 8 740" stroke="#9e3149" stroke-width="10" fill="none" opacity=".7"/>' for x in (50, 110, 160)))
+curtain_r = f'<g transform="translate({W} 0) scale(-1 1)">{curtain_l}</g>'
+valance = '<rect x="0" y="0" width="800" height="54" fill="#d4566c"/>' + "".join(f'<circle cx="{x}" cy="54" r="40" fill="#d4566c"/>' for x in range(40, 800, 80))
+SCENES["news_speaker"] = svg(
+    '<polygon points="320,0 480,0 640,800 160,800" fill="#fff4c4" opacity=".22"/>'
+    + '<rect x="0" y="650" width="800" height="150" fill="#8a4a5c"/><rect x="0" y="650" width="800" height="12" fill="#a65d70"/>'
+    + '<ellipse cx="400" cy="705" rx="250" ry="44" fill="#ffe9a8" opacity=".55"/>'
+    + '<circle cx="400" cy="420" r="210" fill="#fff1b8" opacity=".25" filter="url(#glow)"/>'
+    + curtain_l + curtain_r + valance
+    # podium with a gold star
+    + '<path d="M300 480 H500 L482 700 H318Z" fill="#f3e3c3"/><path d="M300 480 H340 L350 700 H318Z" fill="#e4cfa8"/>'
+    + '<rect x="288" y="462" width="224" height="26" rx="9" fill="#fff3da"/>'
+    + '<circle cx="400" cy="585" r="42" fill="#ffcf5a"/><circle cx="400" cy="585" r="34" fill="none" stroke="#fff3b0" stroke-width="4"/>'
+    + '<path d="M400 560 L407 577 L425 578 L411 589 L416 607 L400 597 L384 607 L389 589 L375 578 L393 577Z" fill="#fff8dc"/>'
+    # microphone and sound waves
+    + '<path d="M420 466 q6 -40 30 -70" stroke="#4a4f63" stroke-width="8" fill="none" stroke-linecap="round"/>'
+    + '<g transform="rotate(30 458 378)"><rect x="442" y="350" width="32" height="50" rx="16" fill="#4a4f63"/><rect x="446" y="354" width="24" height="26" rx="12" fill="#8e95ab"/></g>'
+    + "".join(f'<path d="M{486+r*.3} {350-r*.6} a{r} {r} 0 0 1 {r*.2} {r*1.1}" stroke="#ffe08a" stroke-width="7" fill="none" stroke-linecap="round" opacity="{o}"/>' for r, o in [(30, .95), (55, .75), (80, .55)])
+    # rosette ribbon
+    + '<g transform="translate(300 250)"><path d="M-14 20 L-30 92 L-10 80 L0 100 L6 24Z" fill="#4f7cff"/><path d="M10 20 L30 92 L10 80 L0 100 L-4 24Z" fill="#7aa2ff"/>'
+    + "".join(f'<circle cx="{34*math.cos(a):.1f}" cy="{34*math.sin(a):.1f}" r="16" fill="#ffd166"/>' for a in [i * math.pi / 6 for i in range(12)])
+    + '<circle r="32" fill="#ffcf5a"/><circle r="22" fill="#fff3c4"/></g>'
+    + confetti(46, 17, (210, 80, 600, 430), ["#ffd166", "#7cf2e0", "#ff9ad5", "#9db8ff", "#fff"])
+    + sparkles(12, 23, (220, 90, 580, 440), ["#fff", "#ffe08a"]),
+    sky("s9", [(0, "#2f2350"), (.55, "#5b3a78"), (1, "#a75a7a")]),
+)
+
+# 10. Aug 2022 - M&M 2022 Student Scholar Award (Portland): a gold medal before Mt. Hood, its face tracking a defect
+medal_face = ('<path d="M352 448 q24 -10 40 -34" stroke="#7cf29b" stroke-width="5" fill="none" stroke-dasharray="6 7"/>'
+              '<circle cx="404" cy="408" r="15" fill="#fff8d6" filter="url(#glow)"/><circle cx="404" cy="408" r="8" fill="#fffbe6"/>'
+              '<rect x="380" y="384" width="48" height="48" rx="7" fill="none" stroke="#2f8f5f" stroke-width="6"/>')
+SCENES["news_scholar"] = svg(
+    clouds(5, 3, (60, 90, 740, 200), "#fff", .85)
+    + '<path d="M90 640 L370 250 L410 268 L455 232 L720 640Z" fill="#8fa3c9"/>'
+    + '<path d="M318 322 L370 250 L410 268 L455 232 L512 312 L486 322 L462 298 L438 330 L410 302 L382 334 L356 312Z" fill="#fbfcff"/>'
+    + hill("M0 620 Q220 560 420 600 T800 580 V800 H0Z", "#7cc49a")
+    + "".join(f'<path d="M{x} {y} l{-18*s} {50*s} h{36*s}Z M{x} {y+22*s} l{-22*s} {50*s} h{44*s}Z" fill="#3f7f63"/>' for x, y, s in [(70, 560, 1.1), (120, 580, .9), (690, 548, 1.2), (740, 570, .9), (640, 580, .8)])
+    + hill("M0 700 Q300 660 560 696 T800 690 V800 H0Z", "#5fae86")
+    # ribbon and medal
+    + '<path d="M300 0 L380 330 L420 330 L360 0Z" fill="#4f7cff"/><path d="M500 0 L420 330 L380 330 L440 0Z" fill="#7aa2ff"/>'
+    + '<path d="M336 0 L392 330 L404 330 L350 0Z M464 0 L408 330 L396 330 L450 0Z" fill="#fff" opacity=".7"/>'
+    + '<circle cx="400" cy="420" r="130" fill="#fff1b8" opacity=".55" filter="url(#glow)"/>'
+    + '<radialGradient id="gold" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff3c4"/><stop offset=".45" stop-color="#ffcf5a"/><stop offset="1" stop-color="#d99a2b"/></radialGradient>'
+    + '<circle cx="400" cy="420" r="96" fill="url(#gold)"/><circle cx="400" cy="420" r="78" fill="none" stroke="#fff3c4" stroke-width="5" opacity=".9"/>'
+    + '<circle cx="400" cy="420" r="66" fill="#ffe08a" opacity=".6"/>'
+    + medal_face
+    + robot(640, 770, .5, accent="#ff8a65", wave=True)
+    + sparkles(18, 31, (80, 60, 720, 520), ["#fff", "#ffe08a", "#ffd1dc"]),
+    sky("s10", [(0, "#bfe6ff"), (.6, "#ffe9cf"), (1, "#ffd6b5")]),
+)
+
+# 11. Aug 2021 - virtual M&M 2021 talk on nanocatalyst sintering: a laptop at night showing particles merge and split
+def particle(x, y, r, mask):
+    return (f'<circle cx="{x}" cy="{y}" r="{r}" fill="#ffcf5a"/><circle cx="{x-r*.3}" cy="{y-r*.3}" r="{r*.3}" fill="#fff6d6"/>'
+            f'<circle cx="{x}" cy="{y}" r="{r+6}" fill="none" stroke="{mask}" stroke-width="4" stroke-dasharray="7 5"/>')
+screen = ('<rect x="200" y="280" width="400" height="230" rx="8" fill="#163445"/>'
+          '<rect x="200" y="452" width="400" height="58" fill="#2d5566"/>'
+          + particle(240, 440, 9, "#ff9ad5") + particle(266, 432, 7, "#7cf2e0") + particle(254, 410, 8, "#ffd166") + particle(282, 446, 6, "#9db8ff")
+          + '<path d="M300 430 h36 m-12 -10 l12 10 l-12 10" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
+          + particle(400, 426, 24, "#ff9ad5")
+          + '<path d="M450 430 h36 m-12 -10 l12 10 l-12 10" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
+          + particle(524, 440, 8, "#7cf2e0") + particle(552, 424, 9, "#ffd166") + particle(566, 448, 7, "#9db8ff") + particle(540, 410, 6, "#ff9ad5")
+          + '<circle cx="222" cy="302" r="8" fill="#ff5c6c"/><rect x="520" y="296" width="64" height="44" rx="6" fill="#2d5566"/><circle cx="552" cy="312" r="8" fill="#9fc7d6"/><path d="M538 336 q14 -18 28 0" fill="#9fc7d6"/>')
+SCENES["news_mm2021"] = svg(
+    # window with night sky
+    '<rect x="70" y="70" width="230" height="170" rx="12" fill="#2a3166"/><rect x="70" y="70" width="230" height="170" rx="12" fill="none" stroke="#f3e3c3" stroke-width="12"/>'
+    + '<line x1="185" y1="70" x2="185" y2="240" stroke="#f3e3c3" stroke-width="8"/>'
+    + '<circle cx="250" cy="120" r="22" fill="#fff4cf"/><circle cx="262" cy="112" r="20" fill="#2a3166"/>'
+    + sparkles(8, 40, (90, 90, 280, 220), ["#fff", "#ffe08a"], 1.5, 3.5)
+    # plant
+    + '<path d="M690 600 L676 500 H744 L730 600Z" fill="#e08a5c"/>'
+    + "".join(f'<path d="M710 500 q{dx} {-60} {dx*1.6} {-120}" stroke="#4fae7c" stroke-width="16" fill="none" stroke-linecap="round"/>' for dx in (-30, 0, 26))
+    + '<rect x="0" y="600" width="800" height="200" fill="#c98b5b"/><rect x="0" y="600" width="800" height="14" fill="#a86d43"/>'
+    # laptop
+    + '<circle cx="400" cy="400" r="240" fill="#bff6ff" opacity=".18" filter="url(#glow)"/>'
+    + '<rect x="180" y="260" width="440" height="270" rx="18" fill="#3a4060"/>' + screen
+    + '<path d="M150 560 H650 L620 600 H180Z" fill="#d7dce6"/><rect x="150" y="548" width="500" height="16" rx="6" fill="#eef1f6"/>'
+    # mug
+    + '<rect x="90" y="530" width="60" height="70" rx="10" fill="#7c6cff"/><path d="M150 548 q26 6 0 36" stroke="#7c6cff" stroke-width="9" fill="none"/>'
+    + "".join(f'<path d="M{x} 520 q-12 -20 0 -40 t0 -40" stroke="#fff" stroke-width="5" fill="none" opacity=".6" stroke-linecap="round"/>' for x in (110, 130))
+    + sparkles(10, 41, (320, 80, 740, 240), ["#fff", "#ffe08a"]),
+    sky("s11", [(0, "#cbbcf2"), (.7, "#e9d8f4"), (1, "#f6e3ea")]),
+)
+
+# 12. Mar 2021 - tungsten oxidation (Materials Characterization): a tungsten cube on a hot plate,
+#     growing a yellow oxide crust that is thick on one face and thin on another
+def on_face(seed, A, B, D, n, smin, smax, cols):
+    rnd = random.Random(seed); out = []
+    for _ in range(n):
+        u, v = rnd.uniform(.04, .96), rnd.uniform(.04, .96)
+        x = A[0] + u * (B[0] - A[0]) + v * (D[0] - A[0]); y = A[1] + u * (B[1] - A[1]) + v * (D[1] - A[1])
+        s = rnd.uniform(smin, smax)
+        out.append(f'<rect x="{x-s/2:.1f}" y="{y-s/2:.1f}" width="{s:.1f}" height="{s*.7:.1f}" rx="{s*.2:.1f}" fill="{rnd.choice(cols)}" transform="rotate({rnd.uniform(-40, 40):.0f} {x:.1f} {y:.1f})"/>')
+    return "".join(out)
+ox = ["#f2d14b", "#e7c23a", "#d6d65a", "#ffe27a"]
+o2 = "".join(f'<g transform="rotate({r} {x} {y})"><circle cx="{x-9}" cy="{y}" r="11" fill="#ff7b7b"/><circle cx="{x+9}" cy="{y}" r="11" fill="#ff9a9a"/></g>'
+             for x, y, r in [(170, 300, 20), (250, 180, -15), (590, 200, 30), (650, 320, -10), (420, 150, 5)])
+SCENES["news_matchar"] = svg(
+    '<circle cx="400" cy="440" r="250" fill="#fff4cf" opacity=".5" filter="url(#glow)"/>'
+    + hill("M0 650 Q260 610 520 640 T800 630 V800 H0Z", "#b9a6d9")
+    + hill("M0 720 Q300 690 560 716 T800 710 V800 H0Z", "#a08cc7")
+    # hot plate
+    + '<rect x="190" y="580" width="420" height="80" rx="20" fill="#6a5a7a"/>'
+    + '<ellipse cx="400" cy="580" rx="210" ry="40" fill="#ff9f6b"/><ellipse cx="400" cy="580" rx="230" ry="60" fill="#ff8a5b" opacity=".5" filter="url(#glow)"/>'
+    + "".join(f'<ellipse cx="400" cy="580" rx="{r}" ry="{r*.19:.0f}" fill="none" stroke="#ffe08a" stroke-width="5"/>' for r in (70, 120, 170))
+    + "".join(f'<path d="M{x} 560 q-12 -24 0 -48 t0 -48 t0 -48" stroke="#ffb36b" stroke-width="5" fill="none" opacity=".55" stroke-linecap="round"/>' for x in (230, 570, 610))
+    # tungsten cube: thick oxide on the left face, medium on top, thin on the right
+    + '<polygon points="280,360 400,420 400,570 280,510" fill="#b8c2d3" stroke="#f2d14b" stroke-width="22" stroke-linejoin="round"/>'
+    + '<polygon points="280,360 400,300 520,360 400,420" fill="#e9edf5" stroke="#f2d14b" stroke-width="10" stroke-linejoin="round"/>'
+    + '<polygon points="400,420 520,360 520,510 400,570" fill="#cdd5e2" stroke="#f2d14b" stroke-width="4" stroke-linejoin="round"/>'
+    + on_face(1, (280, 360), (400, 420), (280, 510), 70, 14, 26, ox)
+    + on_face(2, (280, 360), (400, 300), (400, 420), 26, 9, 16, ox)
+    + on_face(3, (400, 420), (520, 360), (400, 570), 14, 4, 7, ox)
+    + '<ellipse cx="446" cy="462" rx="8" ry="10" fill="#2a2f45"/><ellipse cx="482" cy="444" rx="8" ry="10" fill="#2a2f45"/>'
+    + '<circle cx="449" cy="458" r="3" fill="#fff"/><circle cx="485" cy="440" r="3" fill="#fff"/>'
+    + '<path d="M452 492 q20 4 34 -16" stroke="#2a2f45" stroke-width="5" fill="none" stroke-linecap="round"/>'
+    + '<circle cx="432" cy="490" r="7" fill="#ffadc6" opacity=".7"/><circle cx="500" cy="462" r="7" fill="#ffadc6" opacity=".7"/>'
+    + o2
+    + sparkles(14, 12, (80, 60, 720, 280), ["#fff", "#ffe08a"]),
+    sky("s12", [(0, "#d9d4ff"), (.6, "#f3e6ff"), (1, "#fff0d0")]),
+)
+
 if __name__ == "__main__":
     import sys
     from playwright.sync_api import sync_playwright
-    out = sys.argv[1]
+    out, only = sys.argv[1], set(sys.argv[2:])   # optional: names of scenes to render
     with sync_playwright() as p:
         b = p.chromium.launch(); pg = b.new_page(viewport={"width": W, "height": W})
         for name, s in SCENES.items():
+            if only and name not in only:
+                continue
             pg.set_content(f'<html><body style="margin:0">{s}</body></html>')
             pg.screenshot(path=f"{out}/{name}.png", clip={"x": 0, "y": 0, "width": W, "height": W})
             print("rendered", name)
