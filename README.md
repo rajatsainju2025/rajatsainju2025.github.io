@@ -41,3 +41,6 @@ assets/img/           thumbnails (figures from the papers)
 The layout is modelled on [mattdeitke.com](https://mattdeitke.com/) and was
 written from scratch. Paper figures are reproduced from open-access
 publications (CC BY 4.0).
+
+After editing `data.js`, `main.js` or `style.css`, bump the `?v=` tag on its
+`<link>`/`<script>` line in `index.html` so browsers fetch the new version.
