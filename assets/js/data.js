@@ -117,8 +117,9 @@ const PROJECTS = [
              github: "https://github.com/rajatsainju2025/aps-rag" },
   },
   {
-    title: "APS-RAG: A Domain-Aware Hybrid Retrieval Augmented Generation System for Accelerator Operations and Knowledge Synthesis",
-    card: { line1: "IPAC'26", line2: "APS-RAG for Accelerator Operations", tint: "sky" },
+    title: "A Domain-Aware Hybrid Retrieval Augmented Generation System for Accelerator Operations and Knowledge Synthesis",
+    image: "assets/img/thumbs/ipac26_apsrag.jpg", figure: "assets/img/figs/ipac26_apsrag.jpg",
+    figCaption: "Illustration based on the paper: four APS sources indexed for dense and BM25 search, fused with RRF, reranked, and synthesized into a cited answer.",
     authors: ["Rajat Sainju", "Dariusz Jarosz", "Hairong Shang", "Michael Prince", "Ryan M. Aydelott",
               "Mathew J. Cherukara", "Yine Sun", "Michael Borland"],
     venue: "IPAC'26",
@@ -132,7 +133,8 @@ const PROJECTS = [
   },
   {
     title: "Leveraging Low-Cost Sensors and Machine Learning for Pump Anomaly Detection in Accelerator Facilities",
-    card: { line1: "IPAC'26", line2: "Pump Anomaly Detection", tint: "teal" },
+    image: "assets/img/thumbs/ipac26_pumps.jpg", figure: "assets/img/figs/ipac26_pumps.jpg",
+    figCaption: "Illustration based on the paper: a vibration sensor on a cooling pump streams to an edge node; an autoencoder scores anomalies shown on a web dashboard.",
     authors: ["Rajat Sainju", "O. Mohsen", "J. Ackley", "J. Fuerst", "R. Wright", "Yine Sun", "Michael Borland"],
     venue: "IPAC'26",
     tldr: `Low-cost vibration sensors on a helium pump and storage-ring cooling-water pumps stream data to
