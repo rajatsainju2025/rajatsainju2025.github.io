@@ -102,8 +102,8 @@ function projectHTML(p, i) {
     </div>`;
 }
 
-const isMM = (p) => p.venue.startsWith("Microscopy & Microanalysis");
-const MM_SHOWN = 3;   // how many Microscopy & Microanalysis papers to show before "Show all"
+const isMM = (p) => /^(Microscopy & Microanalysis|NAPAC)/.test(p.venue);   // conference papers
+const MM_SHOWN = 3;   // how many conference papers to show before "Show all"
 
 function renderProjects() {
   const indexed = PROJECTS.map((p, i) => [p, i]);
@@ -122,7 +122,7 @@ function renderProjects() {
   const toggle = $("mm-toggle"), more = $("mm-more");
   if (!hiddenCount) { toggle.hidden = true; return; }
   const label = () => more.hidden
-    ? `<i class="fa-solid fa-chevron-down"></i> Show all ${mm.length + ABSTRACTS.length} Microscopy &amp; Microanalysis works`
+    ? `<i class="fa-solid fa-chevron-down"></i> Show all ${mm.length + ABSTRACTS.length} conference papers`
     : `<i class="fa-solid fa-chevron-up"></i> Show fewer`;
   toggle.innerHTML = label();
   toggle.onclick = () => {
