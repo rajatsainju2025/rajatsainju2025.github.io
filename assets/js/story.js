@@ -8,7 +8,7 @@
 const THEMES = {
   vision:    { label: "Computer vision for microscopy", short: "Vision",    color: "#1F6F6B" },
   materials: { label: "In-situ materials science",      short: "Materials", color: "#B4532A" },
-  language:  { label: "Language models and agents",     short: "Language",  color: "#2E4A87" },
+  language:  { label: "Language models, agents and accelerator AI", short: "AI for accelerators", color: "#2E4A87" },
 };
 
 const PAPER_THEME = {

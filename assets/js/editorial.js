@@ -9,12 +9,12 @@ const INK = "#1F1D1A", INK3 = "#5B554C", RULE = "#E3DACB", FAINT = "#A79F92", PA
 const yearOf = (p) => +(p.venue.match(/(19|20)\d\d/) || [0])[0];
 // Papers without an entry in story.js are classified from their title.
 const themeKey = (p) => PAPER_THEME[p.s2]
-  || (/\b(agent|RAG|LLM|language|BERT|transformer)/i.test(p.title) ? "language"
+  || (/\b(agent|RAG|LLM|language|BERT|transformer|accelerator)/i.test(p.title) ? "language"
     : /deep learning|segmentation|tracking|neural|machine learning|\bAI\b|automated/i.test(p.title) ? "vision" : "materials");
 const fieldOf = (p) => PAPER_FIELD[p.s2]
   || (/fusion|tungsten|plasma/i.test(p.title) ? "fusion" : /irradiat|radiation|neutron|HT-9|nuclear/i.test(p.title) ? "fission" : "");
 const themeOf = (p) => THEMES[themeKey(p)];
-const shortOf = (p) => PAPER_SHORT[p.s2] || p.title.split(":")[0];
+const shortOf = (p) => PAPER_SHORT[p.s2] || (p.card && p.card.line2) || "";
 const citations = {};  // s2 id -> count, filled by loadCitations()
 
 // Small seeded random, so layouts and simulations look the same on every visit.
@@ -464,7 +464,7 @@ function renderTimeline() {
     const items = Object.values(THEMES).map((t) => [`<circle cx="6" cy="-4" r="6" fill="${t.color}"/>`, t.label])
       .concat([[`<circle cx="6" cy="-4" r="7" fill="none" stroke="#E0A33A" stroke-width="3"/>`, "Fission or fusion"]]);
     const leg = items.map(([mark, label], i) => {
-      const x = w < 640 ? 0 : [0, 236, 420, 640][i], y = w < 640 ? 16 + i * 20 : 16;
+      const x = w < 640 ? 0 : [0, 236, 420, 744][i], y = w < 640 ? 16 + i * 20 : 16;
       return `<g transform="translate(${x} ${y})">${mark}<text x="18" font-size="13" fill="${INK}">${label}</text></g>`;
     }).join("");
     return `<svg viewBox="0 0 ${w} ${axis + 48}" role="group" aria-label="Timeline of papers by year and theme">
@@ -532,7 +532,7 @@ function renderNetwork() {
       if (n.kind === "paper") {
         const p = PROJECTS[n.i];
         return `<g class="pnode" data-tip="p${n.i}" data-paper="${n.i}" tabindex="0" role="img" aria-label="${esc(p.title)}"><circle cx="${sx(n.x)}" cy="${sy(n.y)}" r="11" fill="${themeOf(p).color}"/>
-          <text x="${sx(n.x)}" y="${sy(n.y) - 16}" font-size="12" font-weight="600" text-anchor="middle" fill="${INK}" paint-order="stroke" stroke="${PAPER}" stroke-width="4">${esc(shortOf(p))}</text></g>`;
+          ${shortOf(p) ? `<text x="${sx(n.x)}" y="${sy(n.y) - 16}" font-size="12" font-weight="600" text-anchor="middle" fill="${INK}" paint-order="stroke" stroke="${PAPER}" stroke-width="4">${esc(shortOf(p))}</text>` : ""}</g>`;
       }
       const many = n.v.papers.length > 1;
       return `<circle class="person" data-tip="a${k}" data-k="${k}" cx="${sx(n.x)}" cy="${sy(n.y)}" r="${many ? 6 : 4}" fill="${many ? INK3 : FAINT}" tabindex="${many ? 0 : -1}"/>`;
@@ -555,7 +555,7 @@ function renderNetwork() {
   bindTips(el, (key) => {
     if (key[0] === "p") { const p = PROJECTS[+key.slice(1)]; return `<b>${esc(p.title)}</b>${esc(p.venue)} · ${p.authors.length} authors`; }
     const n = net.nodes[+key.slice(1)];
-    return `<b>${esc(n.v.name)}</b>${n.v.papers.map((i) => esc(shortOf(PROJECTS[i]))).join(", ")}`;
+    return `<b>${esc(n.v.name)}</b>${n.v.papers.map((i) => esc(shortOf(PROJECTS[i]) || PROJECTS[i].title)).join("<br>")}`;
   });
 }
 
