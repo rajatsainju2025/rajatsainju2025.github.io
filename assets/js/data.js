@@ -83,6 +83,7 @@ const NEWS = [
 const PROJECTS = [
   {
     title: "Strategies for Deploying AI Agents in Production at Scientific User Facilities",
+    more: true,   // listed only after "Show all"
     image: "assets/img/thumbs/ai_agents.jpg", figure: "assets/img/figs/ai_agents.jpg",
     figCaption: "Agent harnesses (general, data analysis, experiment control) call tools and skills through the APS Tool/Skill Hub.",
     authors: ["Ming Du", "Xiang-Yu Yin", "Michael H. Prince", "Yi Jiang", "Rajat Sainju", "Tekin Bicer",
@@ -117,6 +118,7 @@ const PROJECTS = [
   },
   {
     title: "Operando Elucidation of Filamentous Carbon Gasification Kinetics and Mechanisms on a Spent Ni/CeO₂ Catalyst",
+    more: true,   // listed only after "Show all"
     image: "assets/img/thumbs/gasification.jpg", figure: "assets/img/figs/gasification.jpg",
     figCaption: "Fig. 1: Filamentous carbon evolution and gasification kinetics in operando ETEM, revealing three gasification modes.",
     authors: ["Monia R. Nielsen", "Tianyu Li", "Rajat Sainju", "Seth March", "Chunxiang Zhu", "Pu-Xian Gao",
@@ -287,6 +289,7 @@ const PROJECTS = [
   },
   {
     title: "Detecting Gender Bias in Transformer-Based Models: A Case Study on BERT",
+    more: true,   // listed only after "Show all"
     image: "assets/img/thumbs/bert.jpg", figure: "assets/img/figs/bert.jpg",
     figCaption: "Fig. 1: Gender-swapped sentences and the attention between pronouns and occupations.",
     authors: ["Bingbing Li", "Hongwu Peng", "Rajat Sainju", "Yueying Liang", "Junhuan Yang", "Lei Yang",
@@ -312,6 +315,7 @@ const PROJECTS = [
   },
   {
     title: "Direct Observation of Tungsten Oxidation Studied by In Situ Environmental TEM",
+    more: true,   // listed only after "Show all"
     image: "assets/img/thumbs/matchar_tungsten.jpg", figure: "assets/img/figs/matchar_tungsten.jpg",
     figCaption: "Fig. 3: Two oxide scale regions on un-irradiated W{27-1} at 600–800 °C and their oxide phases.",
     authors: ["Maanas Togaru", "Rajat Sainju", "Lichun Zhang", "Weilin Jiang", "Yuanyuan Zhu"],

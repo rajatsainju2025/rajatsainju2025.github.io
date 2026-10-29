@@ -363,7 +363,7 @@ footer { margin-top: 56px; font-size: 13px; color: var(--muted); }
 }
 .show-all:hover { border-color: var(--link); }
 .show-all[hidden] { display: none; }
-#mm-more[hidden] { display: none; }
+#mm-more[hidden], .project[hidden] { display: none; }
 .more-head { font: 700 18px var(--heading); margin: 0 0 8px; }
 .abstract-list { padding-left: 18px; margin: 0 0 40px; font-size: 14px; }
 .abstract-list li { margin-bottom: 6px; line-height: 19px; }

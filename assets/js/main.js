@@ -110,7 +110,25 @@ function renderProjects() {
   const pubs = indexed.filter(([p]) => !isMM(p));
   const mm = indexed.filter(([p]) => isMM(p));
 
-  $("projects").innerHTML = pubs.map(([p, i]) => projectHTML(p, i)).join("");
+  // Publications: papers marked `more: true` stay hidden until "Show all".
+  $("projects").innerHTML = pubs.map(([p, i]) => p.more
+    ? projectHTML(p, i).replace('<div class="project">', '<div class="project pub-more" hidden>')
+    : projectHTML(p, i)).join("");
+  const pubMore = pubs.filter(([p]) => p.more).length, pubToggle = $("pub-toggle");
+  if (!pubMore) pubToggle.hidden = true;
+  else {
+    let open = false;
+    const pubLabel = () => open
+      ? `<i class="fa-solid fa-chevron-up"></i> Show fewer`
+      : `<i class="fa-solid fa-chevron-down"></i> Show all ${pubs.length} publications`;
+    pubToggle.innerHTML = pubLabel();
+    pubToggle.onclick = () => {
+      open = !open;
+      document.querySelectorAll(".pub-more").forEach((el) => { el.hidden = !open; });
+      pubToggle.innerHTML = pubLabel();
+      if (!open) pubToggle.scrollIntoView({ block: "center" });
+    };
+  }
   $("mm").innerHTML = mm.slice(0, MM_SHOWN).map(([p, i]) => projectHTML(p, i)).join("");
 
   const extra = mm.slice(MM_SHOWN);

@@ -19,7 +19,8 @@ All content is in [`assets/js/data.js`](assets/js/data.js):
   `venue` starts with "Microscopy & Microanalysis" or "NAPAC" go to
   Conference Papers; the newest 3 are shown and the rest sit behind
   "Show all" (change `MM_SHOWN` or `isMM` in `main.js`). Everything else is
-  listed under Publications.
+  listed under Publications; add `more: true` to a paper to list it only
+  after "Show all".
 - `ABSTRACTS`: extra conference abstracts without a figure, shown under
   "Show all".
 - `SOFTWARE`: repository cards. Stars and forks are fetched live from GitHub.
