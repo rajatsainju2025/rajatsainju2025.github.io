@@ -117,6 +117,32 @@ const PROJECTS = [
              github: "https://github.com/rajatsainju2025/aps-rag" },
   },
   {
+    title: "APS-RAG: A Domain-Aware Hybrid Retrieval Augmented Generation System for Accelerator Operations and Knowledge Synthesis",
+    card: { line1: "IPAC'26", line2: "APS-RAG for Accelerator Operations", tint: "sky" },
+    authors: ["Rajat Sainju", "Dariusz Jarosz", "Hairong Shang", "Michael Prince", "Ryan M. Aydelott",
+              "Mathew J. Cherukara", "Yine Sun", "Michael Borland"],
+    venue: "IPAC'26",
+    tldr: `The production version of APS-RAG at the Advanced Photon Source: hybrid dense and BM25 retrieval
+      with reciprocal-rank fusion and cross-encoder reranking over more than 10,000 documents from the
+      BELY logbook, Teams operations chats, ICMS and work requests, with every answer linked back to its
+      source records.`,
+    s2: "",
+    links: { pdf: "https://indico.jacow.org/event/95/contributions/14256/attachments/2311/8525/MOP6302_edited_version.pdf",
+             github: "https://github.com/rajatsainju2025/aps-rag" },
+  },
+  {
+    title: "Leveraging Low-Cost Sensors and Machine Learning for Pump Anomaly Detection in Accelerator Facilities",
+    card: { line1: "IPAC'26", line2: "Pump Anomaly Detection", tint: "teal" },
+    authors: ["Rajat Sainju", "O. Mohsen", "J. Ackley", "J. Fuerst", "R. Wright", "Yine Sun", "Michael Borland"],
+    venue: "IPAC'26",
+    tldr: `Low-cost vibration sensors on a helium pump and storage-ring cooling-water pumps stream data to
+      Linux edge nodes; an autoencoder flags anomalies every hour and a web dashboard shows trends,
+      spectrograms and spectra. In the pilot at the APS, rolling weekly baselines and consistent sensor
+      mounting mattered more than model tweaks.`,
+    s2: "",
+    links: { pdf: "https://indico.jacow.org/event/95/contributions/14437/attachments/2279/8431/MOP6303_edited_version.pdf" },
+  },
+  {
     title: "Operando Elucidation of Filamentous Carbon Gasification Kinetics and Mechanisms on a Spent Ni/CeO₂ Catalyst",
     more: true,   // listed only after "Show all"
     image: "assets/img/thumbs/gasification.jpg", figure: "assets/img/figs/gasification.jpg",

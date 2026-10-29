@@ -16,7 +16,7 @@ All content is in [`assets/js/data.js`](assets/js/data.js):
 - `PROJECTS`: papers, each with a thumbnail `image` (and a full `figure`
   shown on click) or a text `card`, a TLDR and links. `s2` is the Semantic
   Scholar paper ID or `DOI:...` used for the live citation count. Papers whose
-  `venue` starts with "Microscopy & Microanalysis" or "NAPAC" go to
+  `venue` starts with "Microscopy & Microanalysis", "NAPAC" or "IPAC" go to
   Conference Papers; the newest 3 are shown and the rest sit behind
   "Show all" (change `MM_SHOWN` or `isMM` in `main.js`). Everything else is
   listed under Publications; add `more: true` to a paper to list it only

@@ -102,7 +102,7 @@ function projectHTML(p, i) {
     </div>`;
 }
 
-const isMM = (p) => /^(Microscopy & Microanalysis|NAPAC)/.test(p.venue);   // conference papers
+const isMM = (p) => /^(Microscopy & Microanalysis|NAPAC|IPAC)/.test(p.venue);   // conference papers
 const MM_SHOWN = 3;   // how many conference papers to show before "Show all"
 
 function renderProjects() {
