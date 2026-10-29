@@ -26,7 +26,11 @@ const SITE = {
   bio: `I'm an AI/ML scientist at the <a href="https://www.aps.anl.gov/">Advanced Photon Source</a>
     at Argonne National Laboratory. I build production LLM systems, including retrieval-augmented
     generation and agents, that help run a large accelerator facility, and I develop machine learning
-    for accelerators and materials science. Before Argonne, I was a Ph.D. student in Materials Science
+    for accelerators and materials science. My postdoctoral advisors are
+    <a href="https://www.anl.gov/profile/michael-david-borland">Dr. Michael Borland</a>, an Argonne
+    Distinguished Fellow and the principal author of the ELEGANT accelerator code, and
+    <a href="https://www.anl.gov/profile/yine-sun">Dr. Yine Sun</a>, who leads the APS Accelerator
+    Operations and Physics group. Before Argonne, I was a Ph.D. student in Materials Science
     and Engineering at the University of Connecticut, advised by Prof. Yuanyuan Zhu, where I used deep
     learning to analyze in-situ electron microscopy images and videos. I studied Engineering Physics at
     Ramapo College.`,
