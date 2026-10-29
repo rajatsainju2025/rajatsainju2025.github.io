@@ -31,9 +31,10 @@ const SITE = {
     Distinguished Fellow and the principal author of the ELEGANT accelerator code, and
     <a href="https://www.anl.gov/profile/yine-sun">Dr. Yine Sun</a>, who leads the APS Accelerator
     Operations and Physics group. Before Argonne, I was a Ph.D. student in Materials Science
-    and Engineering at the University of Connecticut, advised by Prof. Yuanyuan Zhu, where I used deep
-    learning to analyze in-situ electron microscopy images and videos. I studied Engineering Physics at
-    Ramapo College.`,
+    and Engineering at the University of Connecticut, advised by
+    <a href="https://zhu.mse.uconn.edu">Prof. Yuanyuan Zhu</a>, who directs UConn's center for
+    in-situ/operando electron microscopy (InToEM). There I used deep learning to analyze in-situ
+    electron microscopy images and videos. I studied Engineering Physics at Ramapo College.`,
 };
 
 // News: newest first. `image` is a picture; otherwise `emoji` + `tint` make a tile.
