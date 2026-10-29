@@ -391,6 +391,157 @@ SCENES["news_matchar"] = svg(
     sky("s12", [(0, "#d9d4ff"), (.6, "#f3e6ff"), (1, "#fff0d0")]),
 )
 
+# 13. Sep 2020 - DOE Office of Science highlight of DefectSegNet: a featured article with a segmented micrograph
+micro = ('<rect x="220" y="250" width="360" height="210" rx="6" fill="#273a52"/>'
+         + "".join(f'<ellipse cx="{x}" cy="{y}" rx="{rx}" ry="{ry}" fill="#3b5270" opacity=".9"/>' for x, y, rx, ry in [(270, 300, 30, 18), (380, 330, 44, 22), (500, 290, 34, 20), (320, 410, 40, 20), (470, 400, 50, 24)])
+         + "".join(f'<path d="{d}" stroke="{c}" stroke-width="5" fill="none" stroke-linecap="round"/>' for d, c in [
+             ("M236 280 q60 30 120 0 t120 20 t90 -10", "#7cf2e0"), ("M240 360 q70 -30 150 10 t170 -20", "#ffd166"),
+             ("M300 260 q-10 80 20 190", "#ff9ad5"), ("M450 262 q30 90 -10 190", "#7cf2e0")])
+         + "".join(f'<circle cx="{x}" cy="{y}" r="9" fill="none" stroke="#fff" stroke-width="3"/>' for x, y in [(410, 300), (350, 380), (520, 360)]))
+SCENES["news_doe"] = svg(
+    clouds(14, 3, (60, 70, 740, 160), "#fff", .8)
+    + hill("M0 640 Q240 600 470 630 T800 620 V800 H0Z", "#8fd3b6")
+    + hill("M0 710 Q300 680 560 706 T800 700 V800 H0Z", "#6cbf9d")
+    + '<rect x="192" y="166" width="440" height="470" rx="20" fill="#000" opacity=".12"/>'
+    + '<rect x="180" y="150" width="440" height="470" rx="20" fill="#fffdf7"/>'
+    + '<path d="M180 170 a20 20 0 0 1 20 -20 h400 a20 20 0 0 1 20 20 v60 h-440Z" fill="#2f6f9f"/>'
+    + '<rect x="214" y="176" width="220" height="14" rx="7" fill="#fff"/><rect x="214" y="200" width="150" height="10" rx="5" fill="#cfe4f5"/>'
+    + micro
+    + "".join(f'<rect x="220" y="{y}" width="{w}" height="12" rx="6" fill="#d9dee8"/>' for y, w in [(490, 360), (516, 330), (542, 350), (568, 240)])
+    + '<circle cx="606" cy="170" r="56" fill="#fff1b8" opacity=".6" filter="url(#glow)"/>'
+    + '<circle cx="606" cy="170" r="44" fill="#ffcf5a"/><circle cx="606" cy="170" r="35" fill="none" stroke="#fff3c4" stroke-width="4"/>'
+    + '<path d="M606 146 L613 163 L631 164 L617 175 L622 193 L606 183 L590 193 L595 175 L581 164 L599 163Z" fill="#fff8dc"/>'
+    + robot(120, 770, .5, accent="#ffd166", wave=True)
+    + sparkles(14, 15, (60, 60, 740, 300), ["#fff", "#ffe08a"]),
+    sky("s13", [(0, "#cdeffd"), (.6, "#e3f7ef"), (1, "#fff3e0")]),
+)
+
+# 14. Mar 2020 - Scientific Reports Top 100 in Materials Science: a gold "100" trophy on a stack of journals
+laurel = "".join(
+    f'<ellipse cx="{400 + side*(150*math.sin(t))}" cy="{390 - 150*math.cos(t)}" rx="22" ry="10" fill="{c}" transform="rotate({side*(math.degrees(t)+60)} {400 + side*(150*math.sin(t))} {390 - 150*math.cos(t)})"/>'
+    for side in (-1, 1) for t, c in [(1.2 + i*0.27, ["#5fae86", "#7cc49a"][i % 2]) for i in range(8)])
+SCENES["news_top100"] = svg(
+    hill("M0 680 Q240 640 470 670 T800 660 V800 H0Z", "#c9a7e8")
+    + '<circle cx="400" cy="380" r="200" fill="#fff1b8" opacity=".45" filter="url(#glow)"/>'
+    + laurel
+    + "".join(book(x, y, w, 34, c) for x, y, w, c in [(250, 650, 300, "#5c6bc0"), (270, 616, 260, "#4db6ac"), (240, 582, 290, "#f06292"), (280, 548, 240, "#ffb74d")])
+    # trophy cup
+    + '<path d="M298 300 q-58 0 -50 60 q8 50 72 60" stroke="#e8a93a" stroke-width="16" fill="none"/><path d="M502 300 q58 0 50 60 q-8 50 -72 60" stroke="#e8a93a" stroke-width="16" fill="none"/>'
+    + '<path d="M290 280 H510 Q505 440 400 460 Q295 440 290 280Z" fill="url(#gold)"/>'
+    + '<radialGradient id="gold" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff3c4"/><stop offset=".45" stop-color="#ffcf5a"/><stop offset="1" stop-color="#d99a2b"/></radialGradient>'
+    + '<rect x="384" y="456" width="32" height="50" fill="#e8a93a"/><rect x="330" y="500" width="140" height="40" rx="10" fill="#d99a2b"/><rect x="342" y="510" width="116" height="18" rx="6" fill="#ffcf5a"/>'
+    + '<ellipse cx="400" cy="282" rx="110" ry="16" fill="#fff3c4"/>'
+    + '<text x="400" y="392" text-anchor="middle" font-family="Arial Black, Arial" font-weight="900" font-size="64" fill="#b87a1e">100</text>'
+    + confetti(40, 29, (150, 70, 650, 330), ["#ffd166", "#7cf2e0", "#ff9ad5", "#9db8ff", "#fff"])
+    + sparkles(14, 33, (80, 60, 720, 300), ["#fff", "#ffe08a"]),
+    sky("s14", [(0, "#c7dcff"), (.55, "#f0daff"), (1, "#ffe0e9")]),
+)
+
+# 15. Feb 2023 - Argonne feature story on DefectTrack: a story book on a snowy night, tracked "defects" flying out
+fly = "".join(
+    f'<path d="M400 520 Q{(400+x)/2 + 30} {(520+y)/2 + 40} {x} {y}" stroke="{c}" stroke-width="4" fill="none" stroke-dasharray="6 9" opacity=".7"/>'
+    f'<circle cx="{x}" cy="{y}" r="15" fill="#fff8d6" filter="url(#glow)"/><circle cx="{x}" cy="{y}" r="7" fill="#fffbe6"/>'
+    f'<rect x="{x-22}" y="{y-22}" width="44" height="44" rx="6" fill="none" stroke="{c}" stroke-width="5"/>'
+    for x, y, c in [(220, 260, "#7cf29b"), (330, 170, "#ff9ad5"), (470, 150, "#ffd166"), (590, 230, "#7fd4ff"), (650, 360, "#c58bff"), (170, 390, "#ffb38a")])
+snow = "".join(f'<circle cx="{x}" cy="{y}" r="{r}" fill="#fff" opacity=".85"/>' for x, y, r in
+               [(random.Random(i).uniform(10, 790), random.Random(i + 99).uniform(10, 600), random.Random(i + 7).uniform(2, 5)) for i in range(60)])
+pine = lambda x, y, s: (f'<path d="M{x} {y} l{-40*s} {80*s} h{80*s}Z M{x} {y+40*s} l{-50*s} {90*s} h{100*s}Z" fill="#2f5d58"/>'
+                        f'<path d="M{x} {y} l{-18*s} {36*s} q{18*s} {-8*s} {36*s} 0Z M{x} {y+40*s} l{-22*s} {40*s} q{22*s} {-8*s} {44*s} 0Z" fill="#fff" opacity=".9"/>')
+SCENES["news_feature"] = svg(
+    '<circle cx="660" cy="110" r="40" fill="#fff4cf"/><circle cx="676" cy="98" r="36" fill="#262d5e"/>'
+    + snow + fly
+    + hill("M0 600 Q240 540 460 580 T800 560 V800 H0Z", "#dfe7f5")
+    + pine(90, 470, 1.1) + pine(170, 510, .8) + pine(700, 470, 1.0)
+    + hill("M0 690 Q300 650 560 690 T800 680 V800 H0Z", "#eef3fb")
+    # open book
+    + '<circle cx="400" cy="560" r="170" fill="#fff4cf" opacity=".5" filter="url(#glow)"/>'
+    + '<path d="M400 540 Q320 500 230 520 V640 Q320 620 400 660Z" fill="#fffdf5"/><path d="M400 540 Q480 500 570 520 V640 Q480 620 400 660Z" fill="#f6efe0"/>'
+    + '<path d="M230 640 Q320 620 400 660 Q480 620 570 640 V656 Q480 636 400 676 Q320 636 230 656Z" fill="#c0435b"/>'
+    + "".join(f'<path d="M{x0} {y} q40 -14 {dx} -4" stroke="#c8b98e" stroke-width="4" fill="none" stroke-linecap="round"/>' for x0, y, dx in [(250, 560, 120), (250, 584, 110), (250, 608, 90), (420, 556, 120), (420, 580, 110), (420, 604, 96)])
+    + robot(640, 770, .48, accent="#7cf29b", wave=True),
+    sky("s15", [(0, "#1d2550"), (.6, "#38407a"), (1, "#6b6fa8")]),
+)
+
+# 16. Jul 2025 - LLMOps talk at BISCUIT: a cheerful biscuit with chat bubbles and gears, next to a cup of tea
+def gear(cx, cy, r, teeth, c):
+    pts = []
+    for i in range(teeth * 2):
+        a = i * math.pi / teeth; rr = r if i % 2 == 0 else r * .78
+        pts += [f"{cx + rr*math.cos(a - math.pi/teeth/2):.1f},{cy + rr*math.sin(a - math.pi/teeth/2):.1f}", f"{cx + rr*math.cos(a + math.pi/teeth/2):.1f},{cy + rr*math.sin(a + math.pi/teeth/2):.1f}"]
+    return f'<polygon points="{" ".join(pts)}" fill="{c}"/><circle cx="{cx}" cy="{cy}" r="{r*.32}" fill="#ffe9cf"/>'
+def bubble(x, y, w, c):
+    return (f'<rect x="{x}" y="{y}" width="{w}" height="60" rx="30" fill="{c}"/><path d="M{x+30} {y+56} l-12 22 l30 -18Z" fill="{c}"/>'
+            + "".join(f'<circle cx="{x + w/2 + dx}" cy="{y+30}" r="7" fill="#fff"/>' for dx in (-22, 0, 22)))
+SCENES["news_biscuit"] = svg(
+    gear(170, 170, 60, 10, "#f4b183") + gear(250, 110, 38, 8, "#f6c39b") + gear(640, 150, 50, 9, "#f4b183")
+    + bubble(300, 150, 150, "#7c9cff") + bubble(470, 230, 130, "#4fc3a1") + bubble(260, 270, 110, "#ff8fab")
+    + '<rect x="0" y="600" width="800" height="200" fill="#b97a50"/><rect x="0" y="600" width="800" height="14" fill="#9c6340"/>'
+    + '<ellipse cx="420" cy="610" rx="230" ry="40" fill="#fdf6ec"/><ellipse cx="420" cy="602" rx="200" ry="30" fill="#ffffff"/>'
+    # biscuit
+    + '<circle cx="420" cy="470" r="140" fill="#cf8a45"/><circle cx="420" cy="462" r="132" fill="#e2a65b"/><circle cx="420" cy="462" r="112" fill="#ebb76e"/>'
+    + "".join(f'<circle cx="{420 + 80*math.cos(a):.0f}" cy="{462 + 80*math.sin(a):.0f}" r="6" fill="#b9783a"/>' for a in [i*math.pi/4 + .4 for i in range(8)])
+    + '<ellipse cx="385" cy="450" rx="11" ry="14" fill="#5a3418"/><ellipse cx="455" cy="450" rx="11" ry="14" fill="#5a3418"/>'
+    + '<circle cx="389" cy="445" r="4" fill="#fff"/><circle cx="459" cy="445" r="4" fill="#fff"/>'
+    + '<path d="M395 488 q25 22 50 0" stroke="#5a3418" stroke-width="6" fill="none" stroke-linecap="round"/>'
+    + '<circle cx="362" cy="482" r="11" fill="#ff9a7a" opacity=".6"/><circle cx="478" cy="482" r="11" fill="#ff9a7a" opacity=".6"/>'
+    # teacup
+    + '<path d="M90 520 H210 Q205 600 150 604 Q95 600 90 520Z" fill="#fff"/><path d="M208 540 q34 4 18 36 q-8 12 -24 12" stroke="#fff" stroke-width="10" fill="none"/>'
+    + '<ellipse cx="150" cy="522" rx="60" ry="12" fill="#c98b5b"/><ellipse cx="150" cy="608" rx="80" ry="12" fill="#fff" opacity=".9"/>'
+    + "".join(f'<path d="M{x} 500 q-12 -20 0 -40 t0 -40" stroke="#fff" stroke-width="5" fill="none" opacity=".7" stroke-linecap="round"/>' for x in (135, 165))
+    + sparkles(12, 51, (60, 60, 740, 360), ["#fff", "#fff3b0"]),
+    sky("s16", [(0, "#ffe9cf"), (.7, "#ffd9b5"), (1, "#ffc9a3")]),
+)
+
+# 17. Jul 2025 - TPC25 in San Jose, RAG search for the APS: a magnifier finding a document in a glowing network at sunset
+rnd17 = random.Random(77)
+nodes = [(rnd17.uniform(120, 680), rnd17.uniform(90, 400)) for _ in range(26)]
+edges = "".join(f'<line x1="{a[0]:.0f}" y1="{a[1]:.0f}" x2="{b[0]:.0f}" y2="{b[1]:.0f}" stroke="#ffe7f0" stroke-width="2.5" opacity=".55"/>'
+                for i, a in enumerate(nodes) for b in nodes[i+1:] if math.dist(a, b) < 150)
+dots = "".join(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="10" fill="#fff5d6" opacity=".7" filter="url(#glow)"/><circle cx="{x:.0f}" cy="{y:.0f}" r="5" fill="#fffbe6"/>' for x, y in nodes)
+palm = lambda x, y, h: (f'<path d="M{x} {y} q10 {-h/2} {-6} {-h}" stroke="#3b2a5a" stroke-width="12" fill="none" stroke-linecap="round"/>'
+                        + "".join(f'<path d="M{x-6} {y-h} q{dx*.5} {-30} {dx} {dy}" stroke="#3b2a5a" stroke-width="10" fill="none" stroke-linecap="round"/>' for dx, dy in [(-80, 10), (-60, 40), (70, 14), (56, 44), (0, -50)]))
+SCENES["news_tpc"] = svg(
+    '<circle cx="400" cy="600" r="150" fill="#ffe7a8"/><circle cx="400" cy="600" r="220" fill="#ffd29d" opacity=".5" filter="url(#glow)"/>'
+    + edges + dots
+    # magnifier showing a retrieved page
+    + '<circle cx="470" cy="250" r="92" fill="#fffdf5" opacity=".95"/>'
+    + '<rect x="438" y="206" width="64" height="86" rx="6" fill="#fff" stroke="#c8b98e" stroke-width="3"/>'
+    + "".join(f'<line x1="448" y1="{y}" x2="{x2}" y2="{y}" stroke="#7c6cff" stroke-width="4" stroke-linecap="round"/>' for y, x2 in [(224, 492), (238, 488), (252, 492), (266, 478)])
+    + '<circle cx="470" cy="250" r="92" fill="none" stroke="#f3c26b" stroke-width="20"/><circle cx="470" cy="250" r="80" fill="none" stroke="#ffe3a3" stroke-width="4" opacity=".8"/>'
+    + '<rect x="540" y="320" width="34" height="140" rx="15" fill="#8a5a3c" transform="rotate(-40 557 390)"/>'
+    + hill("M0 640 Q220 600 420 630 T800 610 V800 H0Z", "#5b3f7a")
+    + hill("M0 710 Q300 680 560 706 T800 700 V800 H0Z", "#45306a")
+    + palm(110, 700, 200) + palm(180, 720, 150) + palm(700, 700, 190)
+    + sparkles(10, 79, (60, 60, 740, 300), ["#fff", "#ffe08a"]),
+    sky("s17", [(0, "#6a5acd"), (.55, "#ff8fab"), (1, "#ffd29d")]),
+)
+
+# 18. Apr 2026 - Beams and Applications Seminar: a talk on AI for accelerator operations, ring + maintenance chart on screen
+ring = ('<ellipse cx="270" cy="270" rx="100" ry="70" fill="none" stroke="#9db8ff" stroke-width="16"/>'
+        + "".join(f'<rect x="{270 + 100*math.cos(a) - 7:.0f}" y="{270 + 70*math.sin(a) - 7:.0f}" width="14" height="14" rx="3" fill="#ffd166"/>' for a in [i*math.pi/5 for i in range(10)])
+        + '<circle cx="370" cy="270" r="16" fill="#bff6ff" filter="url(#glow)"/><circle cx="370" cy="270" r="8" fill="#fff"/>'
+        + '<circle cx="270" cy="270" r="26" fill="#7c6cff"/><path d="M258 270 l8 8 l14 -16" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/>')
+chart = ('<rect x="430" y="190" width="200" height="160" rx="10" fill="#f3f6fb"/>'
+         + '<path d="M445 300 L480 296 L500 270 L515 310 L540 292 L565 296 L585 240 L600 250 L615 246" stroke="#3f9d8b" stroke-width="5" fill="none" stroke-linejoin="round"/>'
+         + '<circle cx="585" cy="240" r="10" fill="#ff5c6c"/><circle cx="585" cy="240" r="20" fill="#ff5c6c" opacity=".3"/>'
+         + '<g transform="translate(470 220) rotate(-35)"><rect x="-4" y="-2" width="8" height="34" rx="3" fill="#7d8a9c"/><circle cx="0" cy="-8" r="12" fill="#7d8a9c"/><rect x="-5" y="-22" width="10" height="14" fill="#f3f6fb"/></g>')
+seats = "".join(f'<rect x="{x}" y="{y}" width="90" height="70" rx="22" fill="{c}"/>' for y, c, xs in [(610, "#5c6bc0", range(40, 800, 110)), (690, "#4a58a8", range(-15, 800, 110))] for x in xs)
+heads = "".join(f'<circle cx="{x}" cy="{y}" r="26" fill="{c}"/>' for x, y, c in [(85, 600, "#3a2e2a"), (305, 598, "#6b4a3a"), (525, 600, "#2f2a3a"), (690, 598, "#8a5a3c"), (140, 680, "#4a3a2e"), (470, 678, "#2f2a3a")])
+SCENES["news_seminar"] = svg(
+    '<rect x="112" y="72" width="576" height="366" rx="14" fill="#c9d1dc"/>'
+    + '<rect x="130" y="90" width="540" height="330" rx="8" fill="#ffffff"/>'
+    + '<rect x="130" y="90" width="540" height="64" fill="#2f5fa8"/><rect x="130" y="90" width="12" height="64" fill="#5aa0ff"/>'
+    + '<rect x="160" y="108" width="300" height="14" rx="7" fill="#fff"/><rect x="160" y="130" width="200" height="10" rx="5" fill="#cfe0ff"/>'
+    + '<g transform="translate(0 40)">' + ring + '</g>' + '<g transform="translate(0 30)">' + chart + '</g>'
+    + '<path d="M370 310 q30 -30 60 -20" stroke="#9aa8b7" stroke-width="4" fill="none" stroke-dasharray="6 6"/>'
+    + '<path d="M690 600 L676 520 H744 L730 600Z" fill="#e08a5c"/>'
+    + "".join(f'<path d="M710 520 q{dx} -50 {dx*1.4} -100" stroke="#4fae7c" stroke-width="14" fill="none" stroke-linecap="round"/><circle cx="{710 + dx*1.4}" cy="420" r="12" fill="{c}"/>' for dx, c in [(-26, "#ff9ad5"), (0, "#ffd166"), (24, "#ff8a65")])
+    + '<rect x="0" y="560" width="800" height="240" fill="#e6dccb"/>'
+    + heads + seats
+    + sparkles(10, 81, (140, 160, 660, 420), ["#ffd166", "#9db8ff"], 2, 5),
+    sky("s18", [(0, "#dff0ff"), (.7, "#e9f6ec"), (1, "#f4f1e6")]),
+)
+
 if __name__ == "__main__":
     import sys
     from playwright.sync_api import sync_playwright

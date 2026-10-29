@@ -50,9 +50,24 @@ const NEWS = [
       <a href="https://github.com/rajatsainju2025/aps-rag">code</a> is open source! 🚀`,
   },
   {
+    date: "Apr, 2026", image: "assets/img/news_seminar.jpg",
+    text: `Gave an Argonne <a href="https://www.anl.gov/aai/beams-and-applications-seminar">Beams and
+      Applications Seminar</a> on AI and machine learning for accelerator operations.`,
+  },
+  {
     date: "Oct, 2025", image: "assets/img/news_gasification.jpg",
     text: `Our study of carbon gasification on a spent Ni/CeO₂ catalyst is out in
       <a href="https://doi.org/10.1021/acscatal.5c02824">ACS Catalysis</a>.`,
+  },
+  {
+    date: "Jul, 2025", image: "assets/img/news_tpc.jpg",
+    text: `Talk at <a href="https://tpc25.org">TPC25</a> in San Jose on augmenting Advanced Photon
+      Source search with retrieval-augmented generation.`,
+  },
+  {
+    date: "Jul, 2025", image: "assets/img/news_biscuit.jpg",
+    text: `Talk on large language model operations for the APS at BISCUIT, the X-ray Science
+      Division seminar at Argonne. 🍪`,
   },
   {
     date: "Jun, 2025", image: "assets/img/news_reduction.jpg",
@@ -68,6 +83,12 @@ const NEWS = [
     date: "Apr, 2023", image: "assets/img/news_speaker.jpg",
     text: `Named the Spring 2023 Outstanding Graduate Student Speaker in
       <a href="https://mse.engr.uconn.edu/">Materials Science and Engineering</a> at UConn. 🎤`,
+  },
+  {
+    date: "Feb, 2023", image: "assets/img/news_feature.jpg",
+    text: `DefectTrack featured in Argonne's story
+      <a href="https://www.anl.gov/article/artificial-intelligence-reframes-nuclear-material-studies">Artificial
+      intelligence reframes nuclear material studies</a>.`,
   },
   {
     date: "Sep, 2022", image: "assets/img/news_defecttrack.jpg",
@@ -94,6 +115,17 @@ const NEWS = [
     date: "Mar, 2021", image: "assets/img/news_matchar.jpg",
     text: `Tungsten oxidation watched in situ by environmental TEM, led by Maanas Togaru, published in
       <a href="https://doi.org/10.1016/j.matchar.2021.111016">Materials Characterization</a>.`,
+  },
+  {
+    date: "Sep, 2020", image: "assets/img/news_doe.jpg",
+    text: `DefectSegNet featured by the DOE Office of Science:
+      <a href="https://www.energy.gov/science/fes/articles/ai-helps-scientists-quantify-irradiation-effects">AI
+      helps scientists quantify irradiation effects</a>.`,
+  },
+  {
+    date: "Mar, 2020", image: "assets/img/news_top100.jpg",
+    text: `DefectSegNet made the Scientific Reports
+      <a href="https://www.nature.com/collections/ecjehiebic">Top 100 in Materials Science</a> of 2019. 🎉`,
   },
   {
     date: "Sep, 2019", image: "assets/img/news_segmentation.jpg",
