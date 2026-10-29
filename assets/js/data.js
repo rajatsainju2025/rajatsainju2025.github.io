@@ -131,7 +131,7 @@ const PROJECTS = [
   {
     title: "Application of Low-Cost Sensors and Deep Autoencoders for Monitoring Water Pumps in Particle Accelerators",
     image: "assets/img/thumbs/napac2025_pumps.jpg", figure: "assets/img/figs/napac2025_pumps.jpg",
-    figCaption: "Fig. 1: Water pump anomaly detection setup at the Advanced Photon Source.",
+    figCaption: "Fig. 4a: Transformer-based autoencoder for real-time vibration monitoring.",
     authors: ["Rajat Sainju", "O. Mohsen", "Michael Borland", "Yine Sun"],
     venue: "NAPAC 2025",
     tldr: `A low-cost vibration sensor and a Raspberry Pi stream cooling-water pump vibrations to a
@@ -169,7 +169,7 @@ const PROJECTS = [
   {
     title: "In-situ ETEM Study of Plasma-Facing Tungsten Nanofuzz Oxidation at Atmospheric Pressure: Microstructure Evolution and Substrate-Free Oxidation Kinetics",
     image: "assets/img/thumbs/acta_nanofuzz.jpg", figure: "assets/img/figs/acta_nanofuzz.jpg",
-    figCaption: "Fig. 8: Oxidation kinetics correlated with microstructure reveal multilayer passivation of W nanofuzz.",
+    figCaption: "Fig. 1: W nanofuzz and the in-situ environmental TEM gas cell used to oxidize it in 1 bar dry air.",
     authors: ["Rajat Sainju", "Marlene Patino", "Matthew J. Baldwin", "Osman El Atwani", "Robert Kolasinski",
               "Yuanyuan Zhu"],
     venue: "Acta Materialia 2024",
@@ -233,7 +233,7 @@ const PROJECTS = [
   {
     title: "DefectTrack: A Deep Learning-Based Multi-Object Tracking Algorithm for Quantitative Defect Analysis of In-situ TEM Videos in Real-Time",
     image: "assets/img/thumbs/defecttrack.jpg", figure: "assets/img/figs/defecttrack.jpg",
-    figCaption: "Fig. 6: DefectTrack's multi-object tracking on a representative test set, with defect lifetimes.",
+    figCaption: "Fig. 3: Overview of the DefectTrack network: backbone, detection branch and tracking module.",
     authors: ["Rajat Sainju", "Wei-Ying Chen", "Samuel Schaefer", "Qian Yang", "Caiwen Ding", "Meimei Li",
               "Yuanyuan Zhu"],
     venue: "Scientific Reports 2022",
@@ -312,7 +312,7 @@ const PROJECTS = [
   {
     title: "Direct Observation of Tungsten Oxidation Studied by In Situ Environmental TEM",
     image: "assets/img/thumbs/matchar_tungsten.jpg", figure: "assets/img/figs/matchar_tungsten.jpg",
-    figCaption: "Fig. 2: In-situ ETEM observation of tungsten oxidation at 600 °C and 800 °C.",
+    figCaption: "Fig. 3: Two oxide scale regions on un-irradiated W{27-1} at 600–800 °C and their oxide phases.",
     authors: ["Maanas Togaru", "Rajat Sainju", "Lichun Zhang", "Weilin Jiang", "Yuanyuan Zhu"],
     venue: "Materials Characterization 2021",
     tldr: `The first in-situ environmental TEM observation of tungsten thermal oxidation, at 500–900 °C and
@@ -337,7 +337,7 @@ const PROJECTS = [
   {
     title: "Deep Learning for Semantic Segmentation of Defects in Advanced STEM Images of Steels",
     image: "assets/img/thumbs/defectsegnet.jpg", figure: "assets/img/figs/defectsegnet.jpg",
-    figCaption: "Fig. 5: DefectSegNet segmentation of line dislocations in DCI STEM images.",
+    figCaption: "Fig. 4: The DefectSegNet architecture, with dense connections within and across encoder and decoder.",
     authors: ["Graham Roberts", "Simon Y. Haile", "Rajat Sainju", "Danny J. Edwards", "Brian Hutchinson",
               "Yuanyuan Zhu"],
     venue: "Scientific Reports 2019",

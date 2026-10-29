@@ -75,33 +75,60 @@ function authorsHTML(list, idx) {
   return `<span id="authors-${idx}">${shown.map(fmt).join(", ")}, <button class="more" data-idx="${idx}">and ${rest} more</button></span>`;
 }
 
-function renderProjects() {
-  $("projects").innerHTML = PROJECTS.map((p, i) => {
+function projectHTML(p, i) {
     const media = p.image
-      ? `<img class="thumb" src="${p.image}" alt="${esc(p.title)}" loading="lazy">`
-      : `<div class="title-card tint-${p.card.tint}"><div class="l1">${esc(p.card.line1)}</div><div class="l2">${esc(p.card.line2)}</div></div>`;
-    const href = p.links.paper || p.links.arxiv || p.links.pdf || "#";
-    const links = Object.entries(p.links)
-      .filter(([, url]) => url)
-      .map(([k, url]) => { const [icon, label] = LINK_META[k] || ["fa-solid fa-link", k];
-        return `<a href="${url}"><i class="${icon}"></i>${label}</a>`; })
-      .join("");
-    const s2 = /^[0-9a-f]{40}$/.test(p.s2 || "") ? `<a href="https://www.semanticscholar.org/paper/${p.s2}"><i class="fa-solid fa-graduation-cap"></i>Semantic Scholar</a>` : "";
-    const cites = p.s2 ? `<span class="cites" data-s2="${p.s2}" hidden><i class="fa-solid fa-quote-left"></i><span></span></span>` : "";
-    return `
-      <div class="project">
-        ${p.figure
-          ? `<a href="${p.figure}" class="fig-link" data-cap="${esc(p.figCaption || "")}" data-title="${esc(p.title)}" title="View figure">${media}<span class="zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></a>`
-          : `<a href="${href}">${media}</a>`}
-        <div>
-          <h4>${esc(p.title)}</h4>
-          <div class="authors">${authorsHTML(p.authors, i)}</div>
-          <div class="venue">${esc(p.venue)}</div>
-          <div class="tldr"><span class="badge">TLDR</span>${p.tldr}</div>
-          <div class="plinks">${cites}${links}${s2}</div>
-        </div>
-      </div>`;
-  }).join("");
+    ? `<img class="thumb" src="${p.image}" alt="${esc(p.title)}" loading="lazy">`
+    : `<div class="title-card tint-${p.card.tint}"><div class="l1">${esc(p.card.line1)}</div><div class="l2">${esc(p.card.line2)}</div></div>`;
+  const href = p.links.paper || p.links.arxiv || p.links.pdf || "#";
+  const links = Object.entries(p.links)
+    .filter(([, url]) => url)
+    .map(([k, url]) => { const [icon, label] = LINK_META[k] || ["fa-solid fa-link", k];
+      return `<a href="${url}"><i class="${icon}"></i>${label}</a>`; })
+    .join("");
+  const s2 = /^[0-9a-f]{40}$/.test(p.s2 || "") ? `<a href="https://www.semanticscholar.org/paper/${p.s2}"><i class="fa-solid fa-graduation-cap"></i>Semantic Scholar</a>` : "";
+  const cites = p.s2 ? `<span class="cites" data-s2="${p.s2}" hidden><i class="fa-solid fa-quote-left"></i><span></span></span>` : "";
+  return `
+    <div class="project">
+      ${p.figure
+        ? `<a href="${p.figure}" class="fig-link" data-cap="${esc(p.figCaption || "")}" data-title="${esc(p.title)}" title="View figure">${media}<span class="zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></a>`
+        : `<a href="${href}">${media}</a>`}
+      <div>
+        <h4>${esc(p.title)}</h4>
+        <div class="authors">${authorsHTML(p.authors, i)}</div>
+        <div class="venue">${esc(p.venue)}</div>
+        <div class="tldr"><span class="badge">TLDR</span>${p.tldr}</div>
+        <div class="plinks">${cites}${links}${s2}</div>
+      </div>
+    </div>`;
+}
+
+const isMM = (p) => p.venue.startsWith("Microscopy & Microanalysis");
+const MM_SHOWN = 3;   // how many Microscopy & Microanalysis papers to show before "Show all"
+
+function renderProjects() {
+  const indexed = PROJECTS.map((p, i) => [p, i]);
+  const pubs = indexed.filter(([p]) => !isMM(p));
+  const mm = indexed.filter(([p]) => isMM(p));
+
+  $("projects").innerHTML = pubs.map(([p, i]) => projectHTML(p, i)).join("");
+  $("mm").innerHTML = mm.slice(0, MM_SHOWN).map(([p, i]) => projectHTML(p, i)).join("");
+
+  const extra = mm.slice(MM_SHOWN);
+  $("mm-more").innerHTML = extra.map(([p, i]) => projectHTML(p, i)).join("")
+    + (ABSTRACTS.length ? `<h5 class="more-head">More abstracts</h5><ul class="abstract-list">${ABSTRACTS
+        .map((a) => `<li><span class="yr">${a.year}</span><a href="${a.url}">${esc(a.title)}</a></li>`).join("")}</ul>` : "");
+
+  const hiddenCount = extra.length + ABSTRACTS.length;
+  const toggle = $("mm-toggle"), more = $("mm-more");
+  if (!hiddenCount) { toggle.hidden = true; return; }
+  const label = () => more.hidden
+    ? `<i class="fa-solid fa-chevron-down"></i> Show all ${mm.length + ABSTRACTS.length} Microscopy &amp; Microanalysis works`
+    : `<i class="fa-solid fa-chevron-up"></i> Show fewer`;
+  toggle.innerHTML = label();
+  toggle.onclick = () => {
+    more.hidden = !more.hidden; toggle.innerHTML = label();
+    if (more.hidden) $("mm-section").scrollIntoView({ block: "start" });
+  };
 
   document.querySelectorAll(".authors .more").forEach((btn) => {
     btn.onclick = () => {
@@ -110,9 +137,6 @@ function renderProjects() {
         .map((a) => (a === SITE.me ? `<span class="me">${esc(a)}</span>` : esc(a))).join(", ");
     };
   });
-
-  $("abstracts").innerHTML = ABSTRACTS
-    .map((a) => `<li><span class="yr">${a.year}</span><a href="${a.url}">${esc(a.title)}</a></li>`).join("");
 }
 
 function renderSoftware() {

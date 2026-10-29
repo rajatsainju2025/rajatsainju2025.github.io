@@ -13,10 +13,13 @@ All content is in [`assets/js/data.js`](assets/js/data.js):
   string hides that item.
 - `NEWS`: the scrolling news cards, newest first. Each card uses an `image`,
   or an `emoji` with a `tint` (violet, amber, teal, rose, sky, slate, lime).
-- `PROJECTS`: papers, each with a thumbnail `image` or a text `card`, a TLDR
-  and links. `s2` is the Semantic Scholar paper ID used for the live citation
-  count.
-- `ABSTRACTS`: conference abstracts, shown in a collapsed list.
+- `PROJECTS`: papers, each with a thumbnail `image` (and a full `figure`
+  shown on click) or a text `card`, a TLDR and links. `s2` is the Semantic
+  Scholar paper ID or `DOI:...` used for the live citation count. Papers whose
+  `venue` starts with "Microscopy & Microanalysis" go to their own section;
+  the newest 3 are shown and the rest sit behind "Show all" (change
+  `MM_SHOWN` in `main.js`). Everything else is listed under Publications.
+- `ABSTRACTS`: extra M&M abstracts without a figure, shown under "Show all".
 - `SOFTWARE`: repository cards. Stars and forks are fetched live from GitHub.
 
 Push to `main` and the site updates within a minute or two.

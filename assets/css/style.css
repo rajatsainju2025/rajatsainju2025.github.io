@@ -346,3 +346,25 @@ footer { margin-top: 56px; font-size: 13px; color: var(--muted); }
   border: 1px solid var(--border); background: #fff; cursor: pointer; color: var(--text);
 }
 @media (max-width: 900px) { .fig-link { width: 100%; max-width: 420px; } }
+
+/* ---------- Microscopy & Microanalysis "show all" ---------- */
+
+.show-all {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: -20px;
+  padding: 8px 16px;
+  font: 600 14px var(--body);
+  color: var(--link);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.show-all:hover { border-color: var(--link); }
+.show-all[hidden] { display: none; }
+#mm-more[hidden] { display: none; }
+.more-head { font: 700 18px var(--heading); margin: 0 0 8px; }
+.abstract-list { padding-left: 18px; margin: 0 0 40px; font-size: 14px; }
+.abstract-list li { margin-bottom: 6px; line-height: 19px; }
+.abstract-list .yr { color: var(--muted); margin-right: 6px; }
