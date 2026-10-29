@@ -83,6 +83,7 @@ const NEWS = [
 const PROJECTS = [
   {
     title: "Strategies for Deploying AI Agents in Production at Scientific User Facilities",
+    more: true,   // listed only after "Show all"
     image: "assets/img/thumbs/ai_agents.jpg", figure: "assets/img/figs/ai_agents.jpg",
     figCaption: "Agent harnesses (general, data analysis, experiment control) call tools and skills through the APS Tool/Skill Hub.",
     authors: ["Ming Du", "Xiang-Yu Yin", "Michael H. Prince", "Yi Jiang", "Rajat Sainju", "Tekin Bicer",
@@ -116,7 +117,36 @@ const PROJECTS = [
              github: "https://github.com/rajatsainju2025/aps-rag" },
   },
   {
+    title: "A Domain-Aware Hybrid Retrieval Augmented Generation System for Accelerator Operations and Knowledge Synthesis",
+    image: "assets/img/thumbs/ipac26_apsrag.jpg", figure: "assets/img/figs/ipac26_apsrag.jpg",
+    figCaption: "Illustration based on the paper: four APS sources indexed for dense and BM25 search, fused with RRF, reranked, and synthesized into a cited answer.",
+    authors: ["Rajat Sainju", "Dariusz Jarosz", "Hairong Shang", "Michael Prince", "Ryan M. Aydelott",
+              "Mathew J. Cherukara", "Yine Sun", "Michael Borland"],
+    venue: "IPAC'26",
+    tldr: `The production version of APS-RAG at the Advanced Photon Source: hybrid dense and BM25 retrieval
+      with reciprocal-rank fusion and cross-encoder reranking over more than 10,000 documents from the
+      BELY logbook, Teams operations chats, ICMS and work requests, with every answer linked back to its
+      source records.`,
+    s2: "",
+    links: { pdf: "https://indico.jacow.org/event/95/contributions/14256/attachments/2311/8525/MOP6302_edited_version.pdf",
+             github: "https://github.com/rajatsainju2025/aps-rag" },
+  },
+  {
+    title: "Leveraging Low-Cost Sensors and Machine Learning for Pump Anomaly Detection in Accelerator Facilities",
+    image: "assets/img/thumbs/ipac26_pumps.jpg", figure: "assets/img/figs/ipac26_pumps.jpg",
+    figCaption: "Illustration based on the paper: a vibration sensor on a cooling pump streams to an edge node; an autoencoder scores anomalies shown on a web dashboard.",
+    authors: ["Rajat Sainju", "O. Mohsen", "J. Ackley", "J. Fuerst", "R. Wright", "Yine Sun", "Michael Borland"],
+    venue: "IPAC'26",
+    tldr: `Low-cost vibration sensors on a helium pump and storage-ring cooling-water pumps stream data to
+      Linux edge nodes; an autoencoder flags anomalies every hour and a web dashboard shows trends,
+      spectrograms and spectra. In the pilot at the APS, rolling weekly baselines and consistent sensor
+      mounting mattered more than model tweaks.`,
+    s2: "",
+    links: { pdf: "https://indico.jacow.org/event/95/contributions/14437/attachments/2279/8431/MOP6303_edited_version.pdf" },
+  },
+  {
     title: "Operando Elucidation of Filamentous Carbon Gasification Kinetics and Mechanisms on a Spent Ni/CeO₂ Catalyst",
+    more: true,   // listed only after "Show all"
     image: "assets/img/thumbs/gasification.jpg", figure: "assets/img/figs/gasification.jpg",
     figCaption: "Fig. 1: Filamentous carbon evolution and gasification kinetics in operando ETEM, revealing three gasification modes.",
     authors: ["Monia R. Nielsen", "Tianyu Li", "Rajat Sainju", "Seth March", "Chunxiang Zhu", "Pu-Xian Gao",
@@ -287,6 +317,7 @@ const PROJECTS = [
   },
   {
     title: "Detecting Gender Bias in Transformer-Based Models: A Case Study on BERT",
+    more: true,   // listed only after "Show all"
     image: "assets/img/thumbs/bert.jpg", figure: "assets/img/figs/bert.jpg",
     figCaption: "Fig. 1: Gender-swapped sentences and the attention between pronouns and occupations.",
     authors: ["Bingbing Li", "Hongwu Peng", "Rajat Sainju", "Yueying Liang", "Junhuan Yang", "Lei Yang",
@@ -312,6 +343,7 @@ const PROJECTS = [
   },
   {
     title: "Direct Observation of Tungsten Oxidation Studied by In Situ Environmental TEM",
+    more: true,   // listed only after "Show all"
     image: "assets/img/thumbs/matchar_tungsten.jpg", figure: "assets/img/figs/matchar_tungsten.jpg",
     figCaption: "Fig. 3: Two oxide scale regions on un-irradiated W{27-1} at 600–800 °C and their oxide phases.",
     authors: ["Maanas Togaru", "Rajat Sainju", "Lichun Zhang", "Weilin Jiang", "Yuanyuan Zhu"],

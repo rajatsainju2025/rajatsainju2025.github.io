@@ -12,7 +12,7 @@
   <meta name="theme-color" content="#F6F1E7">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='36' fill='none' stroke='%23B4532A' stroke-width='12'/></svg>">
   <link rel="preload" href="assets/fonts/newsreader-opsz.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/editorial.css?v=4">
+  <link rel="stylesheet" href="assets/css/editorial.css?v=5">
 </head>
 <body class="about-page">
   <a class="skip" href="#profile">Skip to the profile</a>
@@ -59,12 +59,12 @@
         <section class="about-block" aria-labelledby="news-h">
           <div class="about-head">
             <h2 id="news-h">News</h2>
-            <div class="btn-row">
-              <button type="button" class="btn ghost arrow" id="news-left" aria-label="Scroll news back">←</button>
-              <button type="button" class="btn ghost arrow" id="news-right" aria-label="Scroll news forward">→</button>
-            </div>
           </div>
-          <ol class="news-cards" id="news-cards"></ol>
+          <div class="news-wrap">
+            <ol class="news-cards" id="news-cards" tabindex="0" aria-label="News, scroll sideways"></ol>
+            <button type="button" class="bubble left" id="news-left" aria-label="Scroll news back" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button type="button" class="bubble right" id="news-right" aria-label="Scroll news forward" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
         </section>
 
         <section class="about-block" id="papers" aria-labelledby="papers-h">
@@ -82,8 +82,7 @@
 
         <section class="about-block" id="software" aria-labelledby="software-h">
           <h2 id="software-h">Software</h2>
-          <p class="sw-summary" id="sw-summary"></p>
-      <ul class="software" id="software-list"></ul>
+          <div class="term" id="software-list"></div>
         </section>
       </div>
     </div>
@@ -106,8 +105,8 @@
     <p class="wrap copyright">© <span id="year"></span> Rajat Sainju</p>
   </footer>
 
-  <script src="assets/js/data.js?v=4"></script>
-  <script src="assets/js/story.js?v=4"></script>
-  <script src="assets/js/editorial.js?v=4"></script>
+  <script src="assets/js/data.js?v=5"></script>
+  <script src="assets/js/story.js?v=5"></script>
+  <script src="assets/js/editorial.js?v=5"></script>
 </body>
 </html>
