@@ -153,7 +153,8 @@ a:hover { text-decoration: underline; }
 
 .news-arrow {
   position: absolute;
-  top: 70px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 30px;
   height: 30px;
   border-radius: 50%;
