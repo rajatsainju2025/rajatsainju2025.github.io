@@ -7,7 +7,13 @@ const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const INK = "#1F1D1A", INK3 = "#5B554C", RULE = "#E3DACB", FAINT = "#A79F92", PAPER = "#F6F1E7";
 
 const yearOf = (p) => +(p.venue.match(/(19|20)\d\d/) || [0])[0];
-const themeOf = (p) => THEMES[PAPER_THEME[p.s2]] || THEMES.materials;
+// Papers without an entry in story.js are classified from their title.
+const themeKey = (p) => PAPER_THEME[p.s2]
+  || (/\b(agent|RAG|LLM|language|BERT|transformer)/i.test(p.title) ? "language"
+    : /deep learning|segmentation|tracking|neural|machine learning|\bAI\b|automated/i.test(p.title) ? "vision" : "materials");
+const fieldOf = (p) => PAPER_FIELD[p.s2]
+  || (/fusion|tungsten|plasma/i.test(p.title) ? "fusion" : /irradiat|radiation|neutron|HT-9|nuclear/i.test(p.title) ? "fission" : "");
+const themeOf = (p) => THEMES[themeKey(p)];
 const shortOf = (p) => PAPER_SHORT[p.s2] || p.title.split(":")[0];
 const citations = {};  // s2 id -> count, filled by loadCitations()
 
@@ -77,7 +83,7 @@ function renderProfile() {
   const years = PROJECTS.map(yearOf);
   $("stat-papers").textContent = PROJECTS.length;
   $("stat-years").textContent = `${Math.min(...years)} to ${Math.max(...years)}`;
-  $("stat-nuclear").textContent = PROJECTS.filter((p) => PAPER_FIELD[p.s2]).length
+  $("stat-nuclear").textContent = PROJECTS.filter(fieldOf).length
     + ABSTRACTS.filter((a) => NUCLEAR_ABSTRACT.test(a.title)).length;
   $("stat-coauthors").textContent = people().size - 1;
 }
@@ -444,7 +450,7 @@ function renderTimeline() {
       ids.forEach((i) => {
         const p = PROJECTS[i], r = citeRadius(p);
         y -= r;
-        if (PAPER_FIELD[p.s2]) dots += `<circle cx="${xs(+yr)}" cy="${y}" r="${r + 4}" fill="none" stroke="#E0A33A" stroke-width="3"/>`;
+        if (fieldOf(p)) dots += `<circle cx="${xs(+yr)}" cy="${y}" r="${r + 4}" fill="none" stroke="#E0A33A" stroke-width="3"/>`;
         dots += `<circle class="dot" cx="${xs(+yr)}" cy="${y}" r="${r}" fill="${themeOf(p).color}" tabindex="0" data-tip="${i}" role="img" aria-label="${esc(p.title)}, ${yr}"/>`;
         y -= r + 14;
       });
@@ -466,7 +472,7 @@ function renderTimeline() {
   });
   bindTips(el, (i) => {
     const p = PROJECTS[i], c = citations[p.s2];
-    const f = PAPER_FIELD[p.s2];
+    const f = fieldOf(p);
     return `<b>${esc(p.title)}</b>${esc(p.venue)} · ${themeOf(p).short}${f ? ` · ${FIELDS[f].label}` : ""}${c != null ? ` · ${c} citations` : ""}`;
   });
 }
@@ -577,8 +583,8 @@ function renderIndex() {
     const href = p.links.paper || p.links.arxiv || p.links.pdf || "#";
     const links = Object.entries(p.links).filter(([, u]) => u)
       .map(([k, u]) => `<a href="${u}">${LINK_LABEL[k] || k}</a>`).join("");
-    const field = PAPER_FIELD[p.s2];
-    return `<li data-theme="${PAPER_THEME[p.s2]}" data-nuclear="${field ? "yes" : "no"}">
+    const field = fieldOf(p);
+    return `<li data-theme="${themeKey(p)}" data-nuclear="${field ? "yes" : "no"}">
       <div class="year">${yearOf(p)}</div>
       <a href="${href}" tabindex="-1" aria-hidden="true">${media}</a>
       <div>
