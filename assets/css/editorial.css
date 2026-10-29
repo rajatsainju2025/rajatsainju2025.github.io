@@ -380,6 +380,8 @@ footer { margin-top: 140px; }
 
 .about-main h1 { margin: 0; font-size: clamp(44px, 6vw, 72px); line-height: 1; font-weight: 500; letter-spacing: -.02em; }
 .about-bio { margin: 22px 0 0; font-size: 22px; line-height: 1.6; }
+.about-bio p, .f-bio p { margin: 0 0 .8em; }
+.about-bio p:last-child, .f-bio p:last-child { margin-bottom: 0; }
 .about-story { margin: 18px 0 0; font-family: var(--sans); font-size: 15px; font-weight: 600; }
 .about-stats { margin-top: 40px; padding: 0; }
 .about-block { margin-top: 80px; }

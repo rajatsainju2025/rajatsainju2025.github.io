@@ -23,13 +23,19 @@ const SITE = {
   // Your name as it appears in author lists (highlighted in bold).
   me: "Rajat Sainju",
 
-  bio: `I'm an AI/ML scientist at the <a href="https://www.aps.anl.gov/">Advanced Photon Source</a>
+  bio: `<p>I'm an AI/ML scientist at the <a href="https://www.aps.anl.gov/">Advanced Photon Source</a>
     at Argonne National Laboratory. I build production LLM systems, including retrieval-augmented
     generation and agents, that help run a large accelerator facility, and I develop machine learning
-    for accelerators and materials science. Before Argonne, I was a Ph.D. student in Materials Science
-    and Engineering at the University of Connecticut, advised by Prof. Yuanyuan Zhu, where I used deep
-    learning to analyze in-situ electron microscopy images and videos. I studied Engineering Physics at
-    Ramapo College.`,
+    for accelerators and materials science.</p>
+    <p>At Argonne, my postdoctoral advisors are
+    <a href="https://www.anl.gov/profile/michael-david-borland">Dr. Michael Borland</a>, an Argonne
+    Distinguished Fellow and the principal author of the ELEGANT accelerator code, and
+    <a href="https://www.anl.gov/profile/yine-sun">Dr. Yine Sun</a>, who leads the APS Accelerator
+    Operations and Physics group. Before Argonne, I was a Ph.D. student in Materials Science
+    and Engineering at the University of Connecticut, advised by
+    <a href="https://zhu.mse.uconn.edu">Prof. Yuanyuan Zhu</a>, who directs UConn's center for
+    in-situ/operando electron microscopy (InToEM). There I used deep learning to analyze in-situ
+    electron microscopy images and videos. I studied Engineering Physics at Ramapo College.</p>`,
 };
 
 // News: newest first. `image` is a picture; otherwise `emoji` + `tint` make a tile.
@@ -45,9 +51,25 @@ const NEWS = [
       <a href="https://github.com/rajatsainju2025/aps-rag">code</a> is open source! 🚀`,
   },
   {
+    date: "Apr, 2026", image: "assets/img/news_seminar.jpg",
+    text: `Invited by the Argonne Accelerator Institute (AAI) to give a
+      <a href="https://www.anl.gov/aai/beams-and-applications-seminar">Beams and Applications Seminar</a>
+      on AI and ML for accelerator operations.`,
+  },
+  {
     date: "Oct, 2025", image: "assets/img/news_gasification.jpg",
     text: `Our study of carbon gasification on a spent Ni/CeO₂ catalyst is out in
       <a href="https://doi.org/10.1021/acscatal.5c02824">ACS Catalysis</a>.`,
+  },
+  {
+    date: "Jul, 2025", image: "assets/img/news_tpc.jpg",
+    text: `Talk at <a href="https://tpc25.org">TPC25</a> in San Jose on augmenting Advanced Photon
+      Source search with retrieval-augmented generation.`,
+  },
+  {
+    date: "Jul, 2025", image: "assets/img/news_biscuit.jpg",
+    text: `Talk on large language model operations for the APS at BISCUIT, the X-ray Science
+      Division seminar at Argonne. 🍪`,
   },
   {
     date: "Jun, 2025", image: "assets/img/news_reduction.jpg",
@@ -60,14 +82,52 @@ const NEWS = [
       <a href="https://doi.org/10.1016/j.actamat.2024.120282">Acta Materialia</a>.`,
   },
   {
+    date: "Apr, 2023", image: "assets/img/news_speaker.jpg",
+    text: `Named the Spring 2023 Outstanding Graduate Student Speaker in
+      <a href="https://mse.engr.uconn.edu/">Materials Science and Engineering</a> at UConn. 🎤`,
+  },
+  {
+    date: "Feb, 2023", image: "assets/img/news_feature.jpg",
+    text: `DefectTrack featured in Argonne's story
+      <a href="https://www.anl.gov/article/artificial-intelligence-reframes-nuclear-material-studies">Artificial
+      intelligence reframes nuclear material studies</a>.`,
+  },
+  {
     date: "Sep, 2022", image: "assets/img/news_defecttrack.jpg",
     text: `<a href="https://doi.org/10.1038/s41598-022-19697-1">DefectTrack</a>, real-time tracking of
       defects in in-situ TEM videos, published in Scientific Reports.`,
   },
   {
+    date: "Aug, 2022", image: "assets/img/news_scholar.jpg",
+    text: `Won an <a href="https://microscopy.org/2022-M-M-Student-Scholars">M&amp;M 2022 Student Scholar
+      Award</a> for real-time tracking of irradiation defects in in-situ TEM videos. 🏆`,
+  },
+  {
     date: "Apr, 2022", image: "assets/img/news_oxidation.jpg",
     text: `Single-nanoparticle Ni oxidation, from nucleation to thickening, published in
       <a href="https://doi.org/10.1021/acsnano.2c00742">ACS Nano</a>.`,
+  },
+  {
+    date: "Aug, 2021", image: "assets/img/news_mm2021.jpg",
+    text: `Presented deep learning-assisted in-situ ETEM of
+      <a href="https://doi.org/10.1017/S1431927621007984">nanocatalyst sintering and regeneration</a>
+      at M&amp;M 2021.`,
+  },
+  {
+    date: "Mar, 2021", image: "assets/img/news_matchar.jpg",
+    text: `Tungsten oxidation watched in situ by environmental TEM, led by Maanas Togaru, published in
+      <a href="https://doi.org/10.1016/j.matchar.2021.111016">Materials Characterization</a>.`,
+  },
+  {
+    date: "Sep, 2020", image: "assets/img/news_doe.jpg",
+    text: `DefectSegNet featured by the DOE Office of Science:
+      <a href="https://www.energy.gov/science/fes/articles/ai-helps-scientists-quantify-irradiation-effects">AI
+      helps scientists quantify irradiation effects</a>.`,
+  },
+  {
+    date: "Mar, 2020", image: "assets/img/news_top100.jpg",
+    text: `DefectSegNet made the Scientific Reports
+      <a href="https://www.nature.com/collections/ecjehiebic">Top 100 in Materials Science</a> of 2019. 🎉`,
   },
   {
     date: "Sep, 2019", image: "assets/img/news_segmentation.jpg",
@@ -118,7 +178,7 @@ const PROJECTS = [
   },
   {
     title: "A Domain-Aware Hybrid Retrieval Augmented Generation System for Accelerator Operations and Knowledge Synthesis",
-    image: "assets/img/thumbs/ipac26_apsrag.jpg", figure: "assets/img/figs/ipac26_apsrag.jpg",
+    image: "assets/img/thumbs/ipac26_apsrag_v2.jpg", figure: "assets/img/figs/ipac26_apsrag_v2.jpg",
     figCaption: "Illustration based on the paper: four APS sources indexed for dense and BM25 search, fused with RRF, reranked, and synthesized into a cited answer.",
     authors: ["Rajat Sainju", "Dariusz Jarosz", "Hairong Shang", "Michael Prince", "Ryan M. Aydelott",
               "Mathew J. Cherukara", "Yine Sun", "Michael Borland"],
@@ -133,7 +193,7 @@ const PROJECTS = [
   },
   {
     title: "Leveraging Low-Cost Sensors and Machine Learning for Pump Anomaly Detection in Accelerator Facilities",
-    image: "assets/img/thumbs/ipac26_pumps.jpg", figure: "assets/img/figs/ipac26_pumps.jpg",
+    image: "assets/img/thumbs/ipac26_pumps_v2.jpg", figure: "assets/img/figs/ipac26_pumps_v2.jpg",
     figCaption: "Illustration based on the paper: a vibration sensor on a cooling pump streams to an edge node; an autoencoder scores anomalies shown on a web dashboard.",
     authors: ["Rajat Sainju", "O. Mohsen", "J. Ackley", "J. Fuerst", "R. Wright", "Yine Sun", "Michael Borland"],
     venue: "IPAC'26",
@@ -161,7 +221,7 @@ const PROJECTS = [
   },
   {
     title: "Application of Low-Cost Sensors and Deep Autoencoders for Monitoring Water Pumps in Particle Accelerators",
-    image: "assets/img/thumbs/napac2025_pumps.jpg", figure: "assets/img/figs/napac2025_pumps.jpg",
+    image: "assets/img/thumbs/napac2025_art.jpg", figure: "assets/img/figs/napac2025_pumps.jpg",
     figCaption: "Fig. 4a: Transformer-based autoencoder for real-time vibration monitoring.",
     authors: ["Rajat Sainju", "O. Mohsen", "Michael Borland", "Yine Sun"],
     venue: "NAPAC 2025",
