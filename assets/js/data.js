@@ -27,15 +27,13 @@ const SITE = {
     at Argonne National Laboratory. I build production LLM systems, including retrieval-augmented
     generation and agents, that help run a large accelerator facility, and I develop machine learning
     for accelerators and materials science.</p>
-    <p>At Argonne, my postdoctoral advisors are
-    <a href="https://www.anl.gov/profile/michael-david-borland">Dr. Michael Borland</a>, an Argonne
-    Distinguished Fellow and the principal author of the ELEGANT accelerator code, and
-    <a href="https://www.anl.gov/profile/yine-sun">Dr. Yine Sun</a>, who leads the APS Accelerator
-    Operations and Physics group. Before Argonne, I was a Ph.D. student in Materials Science
-    and Engineering at the University of Connecticut, advised by
-    <a href="https://zhu.mse.uconn.edu">Prof. Yuanyuan Zhu</a>, who directs UConn's center for
-    in-situ/operando electron microscopy (InToEM). There I used deep learning to analyze in-situ
-    electron microscopy images and videos. I studied Engineering Physics at Ramapo College.</p>`,
+    <p>My postdoctoral advisors at Argonne are
+    <a href="https://www.anl.gov/profile/michael-david-borland">Dr. Michael Borland</a> and
+    <a href="https://www.anl.gov/profile/yine-sun">Dr. Yine Sun</a>. I did my Ph.D. in Materials Science
+    and Engineering at UConn with <a href="https://zhu.mse.uconn.edu">Prof. Yuanyuan Zhu</a>, where I
+    developed deep learning tools, like <a href="https://github.com/rajatsainju2025/DefectTrack">DefectTrack</a>,
+    that analyze in-situ electron microscopy videos in real time. Before that, I studied Engineering
+    Physics at Ramapo College.</p>`,
 };
 
 // News: newest first. `image` is a picture; otherwise `emoji` + `tint` make a tile.
