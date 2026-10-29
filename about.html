@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About · Rajat Sainju</title>
+  <meta name="description" content="Rajat Sainju, AI/ML scientist at the Advanced Photon Source, Argonne National Laboratory: biography, news, publications and software.">
+  <meta property="og:title" content="About · Rajat Sainju">
+  <meta property="og:description" content="AI/ML scientist at the Advanced Photon Source, Argonne National Laboratory.">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/202970519?v=4&s=560">
+  <meta property="og:type" content="profile">
+  <meta name="theme-color" content="#F6F1E7">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='36' fill='none' stroke='%23B4532A' stroke-width='12'/></svg>">
+  <link rel="preload" href="assets/fonts/newsreader-opsz.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/editorial.css?v=3">
+</head>
+<body class="about-page">
+  <a class="skip" href="#profile">Skip to the profile</a>
+
+  <header class="masthead">
+    <div class="wrap masthead-row">
+      <a class="wordmark" href="index.html">RAJAT SAINJU</a>
+      <nav aria-label="Sections">
+        <a class="nav-about" href="about.html" aria-current="page">About</a>
+        <a href="index.html#story">The story</a>
+        <a href="index.html#numbers">In numbers</a>
+        <a href="#papers">Papers</a>
+        <a href="#software">Software</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap about-grid">
+      <aside class="profile" id="profile" aria-label="Profile">
+        <figure class="portrait">
+          <img id="photo" src="" width="560" height="560" alt="">
+        </figure>
+        <p class="p-name" id="p-name"></p>
+        <p class="p-title" id="p-title"></p>
+        <ul class="p-icons" id="p-icons" aria-label="Profiles"></ul>
+        <hr class="p-rule">
+        <ul class="p-contact" id="p-contact"></ul>
+      </aside>
+
+      <div class="about-main">
+        <p class="kicker">About</p>
+        <h1 id="about-name">Rajat Sainju</h1>
+        <p class="about-bio" id="about-bio"></p>
+        <p class="about-story"><a href="index.html#story">Read the story of the research →</a></p>
+
+        <div class="stats about-stats" id="stats">
+          <div><b id="stat-papers">22</b><span>papers and proceedings, <span id="stat-years">2019 to 2026</span></span></div>
+          <div><b id="stat-nuclear">12</b><span>on fission and fusion materials</span></div>
+          <div><b id="stat-coauthors">~80</b><span>co-authors</span></div>
+          <div><b id="stat-cites" class="c-language">…</b><span>citations, live from Semantic Scholar</span></div>
+        </div>
+
+        <section class="about-block" aria-labelledby="news-h">
+          <div class="about-head">
+            <h2 id="news-h">News</h2>
+            <div class="btn-row">
+              <button type="button" class="btn ghost arrow" id="news-left" aria-label="Scroll news back">←</button>
+              <button type="button" class="btn ghost arrow" id="news-right" aria-label="Scroll news forward">→</button>
+            </div>
+          </div>
+          <ol class="news-cards" id="news-cards"></ol>
+        </section>
+
+        <section class="about-block" id="papers" aria-labelledby="papers-h">
+          <div class="index-head">
+            <h2 id="papers-h">Publications</h2>
+            <div class="filters" role="group" aria-label="Filter papers by theme" id="filters"></div>
+          </div>
+          <ol class="index" id="index"></ol>
+          <div class="pager" id="pager"></div>
+          <details class="abstracts">
+            <summary>Conference abstracts</summary>
+            <ul id="abstracts"></ul>
+          </details>
+        </section>
+
+        <section class="about-block" id="software" aria-labelledby="software-h">
+          <h2 id="software-h">Software</h2>
+          <ul class="software" id="software-list"></ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div class="tip" id="tip" role="status" hidden></div>
+
+  <footer>
+    <img class="skyline" src="assets/img/wc/skyline.jpg" width="1600" height="700" loading="lazy" alt="Watercolor of the Chicago skyline at dusk over Lake Michigan">
+    <div class="wrap footer-grid">
+      <div>
+        <p class="f-head">Elsewhere</p>
+        <ul class="links" id="links"></ul>
+      </div>
+      <div id="colophon">
+        <p class="f-head">Colophon</p>
+        <p>Illustrations are flat SVG scenes painted by <a href="https://github.com/rajatsainju2025/rajatsainju2025.github.io/blob/main/tools/watercolor.py">an OpenCV watercolor filter</a>. Type is Newsreader and Libre Franklin.</p>
+      </div>
+    </div>
+    <p class="wrap copyright">© <span id="year"></span> Rajat Sainju</p>
+  </footer>
+
+  <script src="assets/js/data.js?v=3"></script>
+  <script src="assets/js/story.js?v=3"></script>
+  <script src="assets/js/editorial.js?v=3"></script>
+</body>
+</html>

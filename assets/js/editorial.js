@@ -12,7 +12,7 @@ const themeKey = (p) => PAPER_THEME[p.s2]
   || (/\b(agent|RAG|LLM|language|BERT|transformer|accelerator)/i.test(p.title) ? "language"
     : /deep learning|segmentation|tracking|neural|machine learning|\bAI\b|automated/i.test(p.title) ? "vision" : "materials");
 const fieldOf = (p) => PAPER_FIELD[p.s2]
-  || (/fusion|tungsten|plasma/i.test(p.title) ? "fusion" : /irradiat|radiation|neutron|HT-9|nuclear/i.test(p.title) ? "fission" : "");
+  || (/\bfusion\b|tungsten|plasma/i.test(p.title) ? "fusion" : /irradiat|radiation|neutron|HT-9|nuclear/i.test(p.title) ? "fission" : "");
 const themeOf = (p) => THEMES[themeKey(p)];
 const shortOf = (p) => PAPER_SHORT[p.s2] || (p.card && p.card.line2) || "";
 const citations = {};  // s2 id -> count, filled by loadCitations()
@@ -71,8 +71,18 @@ document.addEventListener("scroll", hideTip, { passive: true });
 
 // ---------------------------------------------------------------- profile --
 
+const ICON = {
+  github: '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg>',
+  scholar: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3Zm-6.5 9.9V16c0 1.9 2.9 3.5 6.5 3.5s6.5-1.6 6.5-3.5v-3.1L12 16.5l-6.5-3.6Z"/></svg>',
+  linkedin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 2H4a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2ZM8 19H5V9h3v10ZM6.5 7.7a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4ZM19 19h-3v-5c0-1.2-.4-2-1.5-2-.8 0-1.3.6-1.5 1.1-.1.2-.1.5-.1.8V19h-3V9h3v1.3c.4-.6 1.1-1.5 2.7-1.5 2 0 3.4 1.3 3.4 4V19Z"/></svg>',
+  twitter: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg>',
+  mail: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M3 5h18v14H3z M3 6l9 7 9-7"/></svg>',
+  pin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>',
+  cv: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M6 2h9l4 4v16H6z M14 2v5h5 M9 12h7 M9 16h7"/></svg>',
+};
+
 function renderProfile() {
-  $("bio").innerHTML = SITE.bio;
+  if ($("bio")) $("bio").innerHTML = SITE.bio;
   $("year").textContent = new Date().getFullYear();
   const L = SITE.links;
   $("links").innerHTML = [
@@ -86,6 +96,43 @@ function renderProfile() {
   $("stat-nuclear").textContent = PROJECTS.filter(fieldOf).length
     + ABSTRACTS.filter((a) => NUCLEAR_ABSTRACT.test(a.title)).length;
   $("stat-coauthors").textContent = people().size - 1;
+}
+
+// The About page's profile card, in the spirit of the first version of the site.
+function renderAbout() {
+  const L = SITE.links;
+  $("photo").src = SITE.photo;
+  $("photo").alt = `Portrait of ${SITE.name}`;
+  $("p-name").textContent = $("about-name").textContent = SITE.name;
+  $("p-title").textContent = SITE.title;
+  $("about-bio").innerHTML = SITE.bio;
+  $("p-icons").innerHTML = [[L.github, "github", "GitHub"], [L.scholar, "scholar", "Google Scholar"],
+    [L.linkedin, "linkedin", "LinkedIn"], [L.twitter, "twitter", "X"]]
+    .filter(([u]) => u).map(([u, icon, label]) => `<li><a href="${u}" aria-label="${label}" title="${label}">${ICON[icon]}</a></li>`).join("");
+  $("p-contact").innerHTML = [
+    SITE.email && `<li>${ICON.mail}<a href="mailto:${SITE.email}">${esc(SITE.email)}</a></li>`,
+    SITE.location && `<li>${ICON.pin}<span>${esc(SITE.location)}</span></li>`,
+    SITE.cv && `<li>${ICON.cv}<span><a href="${SITE.cv}">CV</a>${SITE.cvNote ? ` (${esc(SITE.cvNote)})` : ""}</span></li>`,
+  ].filter(Boolean).join("");
+}
+
+// News as a row of cards that scrolls sideways, with arrow buttons.
+function renderNewsCards() {
+  const strip = $("news-cards");
+  const img = (src) => `<img src="${src.replace("assets/img/", "assets/img/wc/")}" data-orig="${src}" alt="" loading="lazy">`;
+  strip.innerHTML = NEWS.map((n) => `<li>${n.image ? img(n.image) : `<span class="news-tile">${n.emoji || ""}</span>`}<p>${n.text}</p><time>${esc(n.date)}</time></li>`).join("");
+  strip.querySelectorAll("img").forEach((el) => el.addEventListener("error", () => { el.src = el.dataset.orig; }, { once: true }));
+  const left = $("news-left"), right = $("news-right");
+  const update = () => {
+    left.disabled = strip.scrollLeft < 8;
+    right.disabled = strip.scrollLeft + strip.clientWidth > strip.scrollWidth - 8;
+  };
+  const by = (dir) => strip.scrollBy({ left: dir * strip.clientWidth * 0.8, behavior: REDUCED ? "auto" : "smooth" });
+  left.addEventListener("click", () => by(-1));
+  right.addEventListener("click", () => by(1));
+  strip.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
 }
 
 // Co-authors, merging spelling variants such as "Michael Prince" and "Michael H. Prince".
@@ -721,18 +768,11 @@ function renderChrome() {
   });
 }
 
-renderProfile();
-renderNi();
-renderW();
-renderTracker();
-renderKS();
-renderSeg();
-renderRag();
-renderTimeline();
-renderNetwork();
-renderIndex();
-renderNews();
-renderSoftware();
-renderChrome();
+// Each part renders only on the page that has it (index.html or about.html).
+[["stats", renderProfile], ["profile", renderAbout], ["ni-svg", renderNi], ["w-bars", renderW],
+ ["tracker-canvas", renderTracker], ["ks-svg", renderKS], ["seg-svg", renderSeg], ["rag-steps", renderRag],
+ ["timeline", renderTimeline], ["network", renderNetwork], ["index", renderIndex], ["news", renderNews],
+ ["news-cards", renderNewsCards], ["software-list", renderSoftware], ["progress", renderChrome]]
+  .forEach(([id, render]) => { if ($(id)) render(); });
 loadCitations();
 loadRepoStats();
