@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rajat Sainju</title>
+  <meta name="description" content="Rajat Sainju, AI/ML scientist at the Advanced Photon Source, Argonne National Laboratory. LLM systems, RAG and agents for accelerator facilities; machine learning for materials science.">
+  <meta property="og:title" content="Rajat Sainju">
+  <meta property="og:description" content="AI/ML scientist at the Advanced Photon Source, Argonne National Laboratory.">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/202970519?v=4&s=560">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <h1 id="name"></h1>
+      <p class="bio" id="bio"></p>
+
+      <section>
+        <h3>News</h3>
+        <div class="news-wrap">
+          <div class="news" id="news"></div>
+          <button class="news-arrow left" id="news-left" aria-label="Scroll news left"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="news-arrow right" id="news-right" aria-label="Scroll news right"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </section>
+
+      <section>
+        <h3>Projects</h3>
+        <div id="projects"></div>
+        <details class="abstracts">
+          <summary>Conference abstracts</summary>
+          <ul id="abstracts"></ul>
+        </details>
+      </section>
+
+      <section>
+        <h3>Software</h3>
+        <div class="software" id="software"></div>
+      </section>
+
+      <footer>© <span id="year"></span> Rajat Sainju</footer>
+    </main>
+  </div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
