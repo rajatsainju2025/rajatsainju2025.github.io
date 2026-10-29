@@ -35,42 +35,42 @@ const SITE = {
 // News: newest first. `image` is a picture; otherwise `emoji` + `tint` make a tile.
 const NEWS = [
   {
-    date: "Sep, 2026", emoji: "🤖", tint: "violet",
+    date: "Sep, 2026", image: "assets/img/news_agents.jpg",
     text: `New perspective on <a href="https://arxiv.org/abs/2609.36362">deploying AI agents in production</a>
       at scientific user facilities, drawing on agents running at the APS.`,
   },
   {
-    date: "Jul, 2026", image: "assets/img/apsrag_news.jpg",
+    date: "Jul, 2026", image: "assets/img/news_apsrag.jpg",
     text: `<a href="https://arxiv.org/abs/2607.24663">APS-RAG</a> is on arXiv, and the
       <a href="https://github.com/rajatsainju2025/aps-rag">code</a> is open source! 🚀`,
   },
   {
-    date: "Oct, 2025", emoji: "🔥", tint: "amber",
+    date: "Oct, 2025", image: "assets/img/news_gasification.jpg",
     text: `Our study of carbon gasification on a spent Ni/CeO₂ catalyst is out in
       <a href="https://doi.org/10.1021/acscatal.5c02824">ACS Catalysis</a>.`,
   },
   {
-    date: "Jun, 2025", emoji: "⚛️", tint: "teal",
+    date: "Jun, 2025", image: "assets/img/news_reduction.jpg",
     text: `Operando reduction of hollow NiO and Ni redispersion published in
       <a href="https://doi.org/10.1021/acs.nanolett.5c02133">Nano Letters</a>.`,
   },
   {
-    date: "Oct, 2024", emoji: "🔬", tint: "rose",
+    date: "Oct, 2024", image: "assets/img/news_tungsten.jpg",
     text: `Tungsten nanofuzz oxidation, seen in situ at atmospheric pressure, published in
       <a href="https://doi.org/10.1016/j.actamat.2024.120282">Acta Materialia</a>.`,
   },
   {
-    date: "Sep, 2022", image: "assets/img/defecttrack_news.jpg",
+    date: "Sep, 2022", image: "assets/img/news_defecttrack.jpg",
     text: `<a href="https://doi.org/10.1038/s41598-022-19697-1">DefectTrack</a>, real-time tracking of
       defects in in-situ TEM videos, published in Scientific Reports.`,
   },
   {
-    date: "Apr, 2022", emoji: "🧪", tint: "sky",
+    date: "Apr, 2022", image: "assets/img/news_oxidation.jpg",
     text: `Single-nanoparticle Ni oxidation, from nucleation to thickening, published in
       <a href="https://doi.org/10.1021/acsnano.2c00742">ACS Nano</a>.`,
   },
   {
-    date: "Sep, 2019", image: "assets/img/defectsegnet_news.jpg",
+    date: "Sep, 2019", image: "assets/img/news_segmentation.jpg",
     text: `<a href="https://doi.org/10.1038/s41598-019-49105-0">DefectSegNet</a>, deep learning
       segmentation of defects in steel, published in Scientific Reports.`,
   },
