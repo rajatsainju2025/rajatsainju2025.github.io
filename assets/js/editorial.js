@@ -698,15 +698,59 @@ function renderNews() {
   $("news").querySelectorAll("img").forEach((el) => el.addEventListener("error", () => { el.src = el.dataset.orig; }, { once: true }));
 }
 
+// Software as terminal-style cards: clone command, language mix, live GitHub stats,
+// and a link to the paper each repository accompanies.
+const LANG_COLOR = {
+  Python: "#3572A5", "Jupyter Notebook": "#DA5B0B", Jupyter: "#DA5B0B", Shell: "#89E051", JavaScript: "#F1E05A",
+  TypeScript: "#3178C6", HTML: "#E34C26", CSS: "#563D7C", "C++": "#F34B7D", Dockerfile: "#384D54",
+  PyTorch: "#EE4C2C", TensorFlow: "#FF8F00",
+};
+const repoUrl = (s) => `https://github.com/${s.repo}`;
+function paperFor(s) {
+  const url = repoUrl(s).toLowerCase();
+  return PROJECTS.find((p) => Object.values(p.links || {}).some((u) => u && u.toLowerCase().replace(/\/$/, "") === url));
+}
+function langBar(langs) {
+  const total = langs.reduce((a, [, n]) => a + n, 0) || 1;
+  const top = langs.slice(0, 4), rest = langs.slice(4).reduce((a, [, n]) => a + n, 0);
+  if (rest) top.push(["Other", rest]);
+  const pct = (n) => Math.max(1, Math.round((n / total) * 1000) / 10);
+  return `<div class="sw-langbar" aria-hidden="true">${top.map(([l, n]) => `<span style="width:${pct(n)}%;background:${LANG_COLOR[l] || "#8B8478"}"></span>`).join("")}</div>
+    <ul class="sw-langlist">${top.map(([l, n]) => `<li><i style="background:${LANG_COLOR[l] || "#8B8478"}"></i>${esc(l)}${langs.length > 1 ? ` <span>${pct(n)}%</span>` : ""}</li>`).join("")}</ul>`;
+}
 function renderSoftware() {
-  $("software-list").innerHTML = SOFTWARE.map((s) => {
-    const [owner, name] = s.repo.split("/"), url = `https://github.com/${s.repo}`;
-    return `<li data-repo="${s.repo.toLowerCase()}">
-      <a class="repo" href="${url}"><small>${esc(owner)}/</small>${esc(name)}</a><span class="tag">${esc(s.tag)}</span>
-      <p>${esc(s.desc)}</p>
-      <span class="stats-line">${esc(s.lang)} · <span class="stars">${s.stars}</span> stars · <span class="forks">${s.forks}</span> forks</span>
+  $("software-list").innerHTML = SOFTWARE.map((s, i) => {
+    const [owner, name] = s.repo.split("/"), url = repoUrl(s), cmd = `git clone ${url}`;
+    const paper = paperFor(s);
+    return `<li class="sw-card${i === 0 ? " featured" : ""}" data-repo="${s.repo.toLowerCase()}">
+      <div class="sw-bar"><span class="sw-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <a class="sw-name" href="${url}"><span>${esc(owner)}/</span>${esc(name)}</a><span class="sw-tag">${esc(s.tag)}</span></div>
+      <div class="sw-body">
+        <p class="sw-desc">${esc(s.desc)}</p>
+        <div class="sw-cmd"><code><span class="sw-prompt" aria-hidden="true">$</span> ${esc(cmd)}</code>
+          <button type="button" class="sw-copy" data-copy="${esc(cmd)}" aria-label="Copy the clone command for ${esc(name)}">Copy</button></div>
+        <div class="sw-langs">${langBar([[s.lang, 1]])}</div>
+        <ul class="sw-topics" hidden></ul>
+        <p class="sw-meta"><span title="Stars">★ <b class="stars">${s.stars}</b></span><span title="Forks">⑂ <b class="forks">${s.forks}</b></span><span class="sw-updated"></span>
+          ${paper ? `<a class="sw-paper" href="${paper.links.paper || paper.links.arxiv || paper.links.pdf || "#papers"}">Code for the ${esc(shortOf(paper) || "paper")} paper →</a>` : ""}</p>
+      </div>
     </li>`;
   }).join("");
+  $("software-list").addEventListener("click", async (e) => {
+    const b = e.target.closest(".sw-copy");
+    if (!b) return;
+    try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = "Copied"; }
+    catch (err) { b.textContent = "Press ⌘C"; window.getSelection().selectAllChildren(b.previousElementSibling); }
+    setTimeout(() => { b.textContent = "Copy"; }, 1600);
+  });
+  summarizeSoftware();
+}
+function summarizeSoftware() {
+  const el = $("sw-summary");
+  if (!el) return;
+  const stars = [...document.querySelectorAll("#software-list .stars")].reduce((a, b) => a + (+b.textContent || 0), 0);
+  const langs = [...new Set(SOFTWARE.map((s) => s.lang))];
+  el.innerHTML = `<span class="sw-prompt" aria-hidden="true">$</span> ls ~/code <span class="sw-out">→ ${SOFTWARE.length} repositories · ${stars} star${stars === 1 ? "" : "s"} · ${langs.map(esc).join(", ")}</span>`;
 }
 
 // ----------------------------------------------------------- live data --
@@ -730,6 +774,12 @@ async function loadCitations() {
 }
 
 async function loadRepoStats() {
+  if (!$("software-list")) return;
+  const ago = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+  const since = (iso) => {
+    const days = Math.round((Date.parse(iso) - Date.now()) / 864e5);
+    return Math.abs(days) < 31 ? ago.format(days, "day") : Math.abs(days) < 365 ? ago.format(Math.round(days / 30), "month") : ago.format(Math.round(days / 365), "year");
+  };
   try {
     for (const owner of [...new Set(SOFTWARE.map((s) => s.repo.split("/")[0]))]) {
       const r = await fetch(`https://api.github.com/users/${owner}/repos?per_page=100`);
@@ -739,9 +789,20 @@ async function loadRepoStats() {
         if (!li) continue;
         li.querySelector(".stars").textContent = repo.stargazers_count;
         li.querySelector(".forks").textContent = repo.forks_count;
+        if (repo.pushed_at) li.querySelector(".sw-updated").textContent = `updated ${since(repo.pushed_at)}`;
+        if (repo.topics && repo.topics.length) {
+          const t = li.querySelector(".sw-topics");
+          t.innerHTML = repo.topics.slice(0, 6).map((x) => `<li>${esc(x)}</li>`).join("");
+          t.hidden = false;
+        }
+        fetch(repo.languages_url).then((x) => (x.ok ? x.json() : null)).then((langs) => {
+          const list = langs && Object.entries(langs).sort((a, b) => b[1] - a[1]);
+          if (list && list.length) li.querySelector(".sw-langs").innerHTML = langBar(list);
+        }).catch(() => {});
       }
     }
   } catch (e) { /* keep fallback numbers */ }
+  summarizeSoftware();
 }
 
 // ------------------------------------------------- reading progress, reveal --
