@@ -254,6 +254,7 @@ a:hover { text-decoration: underline; }
 .plinks a { display: inline-flex; align-items: center; gap: 5px; }
 .plinks .cites { color: #c2410c; font-weight: 500; display: inline-flex; align-items: center; gap: 5px; }
 .plinks .cites i { color: #f59e0b; }
+.plinks .cites[hidden] { display: none; }
 
 .abstracts { margin: -24px 0 0; font-size: 14px; }
 .abstracts summary { cursor: pointer; font-weight: 600; color: var(--link); }
