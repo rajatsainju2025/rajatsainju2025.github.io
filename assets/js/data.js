@@ -83,7 +83,8 @@ const NEWS = [
 const PROJECTS = [
   {
     title: "Strategies for Deploying AI Agents in Production at Scientific User Facilities",
-    card: { line1: "Perspective", line2: "AI Agents at User Facilities", tint: "violet" },
+    image: "assets/img/thumbs/ai_agents.jpg", figure: "assets/img/figs/ai_agents.jpg",
+    figCaption: "Agent harnesses (general, data analysis, experiment control) call tools and skills through the APS Tool/Skill Hub.",
     authors: ["Ming Du", "Xiang-Yu Yin", "Michael H. Prince", "Yi Jiang", "Rajat Sainju", "Tekin Bicer",
               "Yan-Qi Luo", "Eric Codrea", "P. Myint", "Nina Andrejevic", "Juan-Juan Huang",
               "Trupti Mohanty", "Pawan K. Tripathi", "D. Beniwal", "Hemant Sharma", "D. Gursoy",
