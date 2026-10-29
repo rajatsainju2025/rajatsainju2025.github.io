@@ -2,9 +2,10 @@
 
     python tools/etem.py OUT_DIR
 
-Writes, for every time step, a bright-field frame (grey PNG), a segmentation
-mask (RGBA PNG: metal green, oxide red, void dark) and the outline of each
-phase (JSON), for the "by hand vs. by model" animations.
+Writes, for every time step (0.5 s apart), a bright-field frame (grey PNG), a
+segmentation mask (RGBA PNG: metal green, oxide red, void turquoise, the
+paper's colours), the outline of each phase and each particle's normalized NiO
+volume fraction alpha (JSON), for the "by hand vs. by model" animations.
 
 The geometry follows Sainju et al., ACS Nano 2022: a large particle
 (Ø 43.8 nm) whose primary void appears at t = 3.5 s and which is fully
@@ -135,16 +136,13 @@ def colour_mask(labels):
     rgba = np.zeros((H, W, 4), np.uint8)
     rgba[labels == 1] = (60, 170, 92, 228)     # metal, green
     rgba[labels == 2] = (226, 72, 58, 214)     # oxide, red
-    rgba[labels == 3] = (20, 24, 34, 236)      # void, dark
+    rgba[labels == 3] = (44, 197, 204, 236)    # void, turquoise
     return rgba
 
 
 def times():
-    ts = [i * 0.25 for i in range(0, 17)]                      # 0 to 4 s
-    ts += [4.5 + i * 0.5 for i in range(12)]                   # to 10 s
-    ts += [11 + i * 1.5 for i in range(33) if 11 + i * 1.5 < 59.5]
-    ts += [59.5]
-    return sorted(set(round(t, 2) for t in ts + KEY_TIMES))
+    """Evenly spaced, like a real video: 0 to 59.5 s, one frame every 0.5 s."""
+    return [round(0.5 * i, 2) for i in range(120)]
 
 
 def main(out):
@@ -166,7 +164,9 @@ def main(out):
         cv2.imwrite(os.path.join(out, f"tem_{i:03d}.png"), img)
         cv2.imwrite(os.path.join(out, f"mask_{i:03d}.png"), cv2.cvtColor(colour_mask(labels), cv2.COLOR_RGBA2BGRA))
         frac = {k: int((labels == v).sum()) for k, v in [("metal", 1), ("oxide", 2), ("void", 3)]}
-        index.append(dict(i=i, t=t, outlines=outlines, area=frac))
+        # Normalized NiO volume fraction, as in the paper's Fig. 6c: the share of the nickel turned to NiO.
+        alpha = {p["name"]: round(1 - (state(p, t)[2] / p["r0"]) ** 3, 4) for p in PARTICLES}
+        index.append(dict(i=i, t=t, outlines=outlines, area=frac, alpha=alpha))
     with open(os.path.join(out, "index.json"), "w") as f:
         json.dump(dict(W=W, H=H, px_per_nm=PX, key_times=KEY_TIMES, frames=index), f)
     print(len(index), "frames")
