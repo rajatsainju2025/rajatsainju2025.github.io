@@ -118,7 +118,7 @@ const PROJECTS = [
   },
   {
     title: "A Domain-Aware Hybrid Retrieval Augmented Generation System for Accelerator Operations and Knowledge Synthesis",
-    image: "assets/img/thumbs/ipac26_apsrag.jpg", figure: "assets/img/figs/ipac26_apsrag.jpg",
+    image: "assets/img/thumbs/ipac26_apsrag_v2.jpg", figure: "assets/img/figs/ipac26_apsrag_v2.jpg",
     figCaption: "Illustration based on the paper: four APS sources indexed for dense and BM25 search, fused with RRF, reranked, and synthesized into a cited answer.",
     authors: ["Rajat Sainju", "Dariusz Jarosz", "Hairong Shang", "Michael Prince", "Ryan M. Aydelott",
               "Mathew J. Cherukara", "Yine Sun", "Michael Borland"],
@@ -133,7 +133,7 @@ const PROJECTS = [
   },
   {
     title: "Leveraging Low-Cost Sensors and Machine Learning for Pump Anomaly Detection in Accelerator Facilities",
-    image: "assets/img/thumbs/ipac26_pumps.jpg", figure: "assets/img/figs/ipac26_pumps.jpg",
+    image: "assets/img/thumbs/ipac26_pumps_v2.jpg", figure: "assets/img/figs/ipac26_pumps_v2.jpg",
     figCaption: "Illustration based on the paper: a vibration sensor on a cooling pump streams to an edge node; an autoencoder scores anomalies shown on a web dashboard.",
     authors: ["Rajat Sainju", "O. Mohsen", "J. Ackley", "J. Fuerst", "R. Wright", "Yine Sun", "Michael Borland"],
     venue: "IPAC'26",
@@ -161,7 +161,7 @@ const PROJECTS = [
   },
   {
     title: "Application of Low-Cost Sensors and Deep Autoencoders for Monitoring Water Pumps in Particle Accelerators",
-    image: "assets/img/thumbs/napac2025_pumps.jpg", figure: "assets/img/figs/napac2025_pumps.jpg",
+    image: "assets/img/thumbs/napac2025_art.jpg", figure: "assets/img/figs/napac2025_pumps.jpg",
     figCaption: "Fig. 4a: Transformer-based autoencoder for real-time vibration monitoring.",
     authors: ["Rajat Sainju", "O. Mohsen", "Michael Borland", "Yine Sun"],
     venue: "NAPAC 2025",
