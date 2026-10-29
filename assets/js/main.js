@@ -86,11 +86,13 @@ function renderProjects() {
       .map(([k, url]) => { const [icon, label] = LINK_META[k] || ["fa-solid fa-link", k];
         return `<a href="${url}"><i class="${icon}"></i>${label}</a>`; })
       .join("");
-    const s2 = p.s2 ? `<a href="https://www.semanticscholar.org/paper/${p.s2}"><i class="fa-solid fa-graduation-cap"></i>Semantic Scholar</a>` : "";
+    const s2 = /^[0-9a-f]{40}$/.test(p.s2 || "") ? `<a href="https://www.semanticscholar.org/paper/${p.s2}"><i class="fa-solid fa-graduation-cap"></i>Semantic Scholar</a>` : "";
     const cites = p.s2 ? `<span class="cites" data-s2="${p.s2}" hidden><i class="fa-solid fa-quote-left"></i><span></span></span>` : "";
     return `
       <div class="project">
-        <a href="${href}">${media}</a>
+        ${p.figure
+          ? `<a href="${p.figure}" class="fig-link" data-cap="${esc(p.figCaption || "")}" data-title="${esc(p.title)}" title="View figure">${media}<span class="zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span></a>`
+          : `<a href="${href}">${media}</a>`}
         <div>
           <h4>${esc(p.title)}</h4>
           <div class="authors">${authorsHTML(p.authors, i)}</div>
@@ -165,6 +167,27 @@ async function loadRepoStats() {
   } catch (e) { /* keep fallback numbers */ }
 }
 
+// Figure viewer: click a thumbnail to see the full figure from the paper.
+function setupLightbox() {
+  const box = document.createElement("div");
+  box.className = "lightbox"; box.hidden = true;
+  box.innerHTML = `<figure><button class="lb-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <img alt=""><figcaption></figcaption></figure>`;
+  document.body.appendChild(box);
+  const img = box.querySelector("img"), cap = box.querySelector("figcaption");
+  const close = () => { box.hidden = true; img.src = ""; document.body.style.overflow = ""; };
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest(".fig-link");
+    if (a) {
+      e.preventDefault();
+      img.src = a.getAttribute("href"); img.alt = a.dataset.title;
+      cap.innerHTML = `<b>${a.dataset.title}</b><br>${a.dataset.cap}`;
+      box.hidden = false; document.body.style.overflow = "hidden";
+    } else if (!box.hidden && (e.target === box || e.target.closest(".lb-close"))) close();
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !box.hidden) close(); });
+}
+
 $("name").textContent = SITE.name;
 $("bio").innerHTML = SITE.bio;
 $("year").textContent = new Date().getFullYear();
@@ -174,3 +197,4 @@ renderProjects();
 renderSoftware();
 loadCitationCounts();
 loadRepoStats();
+setupLightbox();
