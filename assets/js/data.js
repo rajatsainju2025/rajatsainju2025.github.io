@@ -53,7 +53,7 @@ const NEWS = [
     date: "Apr, 2026", image: "assets/img/news_seminar.jpg",
     text: `Invited by the Argonne Accelerator Institute (AAI) to give a
       <a href="https://www.anl.gov/aai/beams-and-applications-seminar">Beams and Applications Seminar</a>
-      on AI and machine learning for accelerator operations.`,
+      on AI and ML for accelerator operations.`,
   },
   {
     date: "Oct, 2025", image: "assets/img/news_gasification.jpg",
