@@ -25,8 +25,8 @@ const SITE = {
 
   bio: `<p>I'm an AI/ML scientist at the <a href="https://www.aps.anl.gov/">Advanced Photon Source</a>
     at Argonne National Laboratory. I build production LLM systems, including
-    <a href="https://arxiv.org/abs/2607.24663">retrieval-augmented generation</a> and
-    <a href="https://arxiv.org/abs/2609.36362">agents</a>, that help run a large accelerator facility, and I develop machine learning
+    <a href="https://arxiv.org/abs/2607.24663">agentic RAG</a> and
+    <a href="https://arxiv.org/abs/2609.36362">AI harnesses</a>, that help run a large accelerator facility, and I develop machine learning
     for accelerators and materials science.</p>
     <p>My postdoctoral advisors at Argonne are
     <a href="https://www.anl.gov/profile/michael-david-borland">Dr. Michael Borland</a> and
