@@ -14,6 +14,8 @@ const LINK_META = {
   blog:   ["fa-regular fa-newspaper", "Blog"],
 };
 
+const SAVED_CITES = typeof CITES === "undefined" ? {} : CITES;   // from data.js
+
 const LANG_COLORS = {
   Python: "#3572A5", PyTorch: "#ee4c2c", TensorFlow: "#ff8f00", Jupyter: "#DA5B0B",
   JavaScript: "#f1e05a", React: "#61dafb",
@@ -86,7 +88,8 @@ function projectHTML(p, i) {
       return `<a href="${url}"><i class="${icon}"></i>${label}</a>`; })
     .join("");
   const s2 = /^[0-9a-f]{40}$/.test(p.s2 || "") ? `<a href="https://www.semanticscholar.org/paper/${p.s2}"><i class="fa-solid fa-graduation-cap"></i>Semantic Scholar</a>` : "";
-  const cites = p.s2 ? `<span class="cites" data-s2="${p.s2}" hidden><i class="fa-solid fa-quote-left"></i><span></span></span>` : "";
+  const saved = SAVED_CITES[p.s2];
+  const cites = p.s2 ? `<span class="cites" data-s2="${p.s2}"${saved ? "" : " hidden"}><i class="fa-solid fa-quote-left"></i><span>${saved || ""}</span></span>` : "";
   return `
     <div class="project">
       ${p.figure
@@ -176,21 +179,26 @@ function renderSoftware() {
   }).join("");
 }
 
-// Live numbers. Both requests are optional; the page is complete without them.
+// Live numbers. Both requests are optional: the page shows saved numbers without them.
+// Semantic Scholar's free API is shared and often busy, so try a few times, then keep the saved counts.
 async function loadCitationCounts() {
   const ids = PROJECTS.map((p) => p.s2).filter(Boolean);
-  try {
-    const r = await fetch("https://api.semanticscholar.org/graph/v1/paper/batch?fields=citationCount", {
-      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ids }),
-    });
-    if (!r.ok) return;
-    const data = await r.json();
-    data.forEach((paper, i) => {
-      if (!paper || !paper.citationCount) return;
-      const el = document.querySelector(`.cites[data-s2="${ids[i]}"]`);
-      if (el) { el.querySelector("span").textContent = paper.citationCount; el.hidden = false; }
-    });
-  } catch (e) { /* offline or rate-limited: leave counts hidden */ }
+  for (const wait of [0, 2500, 6000]) {
+    await new Promise((r) => setTimeout(r, wait));
+    try {
+      const r = await fetch("https://api.semanticscholar.org/graph/v1/paper/batch?fields=citationCount", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ids }),
+      });
+      if (!r.ok) continue;
+      const data = await r.json();
+      data.forEach((paper, i) => {
+        if (!paper || !paper.citationCount) return;
+        const el = document.querySelector(`.cites[data-s2="${ids[i]}"]`);
+        if (el) { el.querySelector("span").textContent = paper.citationCount; el.hidden = false; }
+      });
+      return;
+    } catch (e) { /* busy or offline: try again, then keep the saved counts */ }
+  }
 }
 
 async function loadRepoStats() {

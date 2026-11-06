@@ -485,3 +485,23 @@ const SOFTWARE = [
   { repo: "rajatsainju2025/volatility-forecasting", tag: "Research", lang: "Jupyter",
     desc: "📈 Can LightGBM beat HAR and GARCH at forecasting SPY volatility?", stars: 0, forks: 0 },
 ];
+
+// Saved citation counts (Semantic Scholar), shown straight away and in the plain HTML.
+// main.js updates them live when Semantic Scholar answers; tools/prerender.py refreshes this block.
+// CITES-START
+const CITES = {
+  "d19916428af24c32501704a731dd656bf2c1e9d0": 1,
+  "18dc0f899b48fb5387514a67bfc8fd82175ff5e0": 5,
+  "dc2a192d30a60e1b700acc9d409935fc9ca5b014": 5,
+  "DOI:10.1093/mam/ozae044.856": 1,
+  "DOI:10.1093/micmic/ozad067.802": 1,
+  "4c95de79ed256c1bbcb51e8d51195fc85cf2f033": 28,
+  "DOI:10.1017/S1431927622007966": 1,
+  "7b8d7b2fede25f75cd5ea3d7a7768bd83ca3845e": 29,
+  "6dbbc49afcac5830ca4aac05c577a3fca404694d": 15,
+  "DOI:10.1017/S1431927621005419": 1,
+  "4de06cf3a055f2835ede8e4fe76ba7652dfe8706": 22,
+  "d1bc2bc7e00178969a1d0b43c4f137e69e0688ab": 166,
+  "DOI:10.1017/S1431927619001557": 5,
+};  // updated 2026-11-06
+// CITES-END
