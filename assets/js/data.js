@@ -5,7 +5,7 @@
 
 const SITE = {
   name: "Rajat Sainju",
-  title: "AI/ML Scientist at Argonne National Laboratory",
+  title: "AI/ML Postdoc at Argonne National Laboratory",
   photo: "https://avatars.githubusercontent.com/u/202970519?v=4&s=560",
 
   email: "sainju73@gmail.com",
@@ -23,7 +23,7 @@ const SITE = {
   // Your name as it appears in author lists (highlighted in bold).
   me: "Rajat Sainju",
 
-  bio: `<p>I'm an AI/ML scientist at the <a href="https://www.aps.anl.gov/">Advanced Photon Source</a>
+  bio: `<p>I'm an AI/ML postdoc at the <a href="https://www.aps.anl.gov/">Advanced Photon Source</a>
     at Argonne National Laboratory. I build production LLM systems, including
     <a href="https://arxiv.org/abs/2607.24663">agentic RAG</a> and
     <a href="https://arxiv.org/abs/2609.36362">AI harnesses</a>, that help run a large accelerator facility, and I develop machine learning
@@ -479,7 +479,7 @@ const SOFTWARE = [
   { repo: "rajatsainju2025/DefectTrack", tag: "Model", lang: "PyTorch",
     desc: "🎯 Real-time tracking of defects in in-situ TEM videos", stars: 0, forks: 0 },
   { repo: "rajatsainju2025/DefectSegNet", tag: "Model", lang: "TensorFlow",
-    desc: "🧩 Semantic segmentation of defects in STEM images of steel", stars: 0, forks: 0 },
+    desc: "🧩 Semantic segmentation of defects in STEM images of steel", stars: 11, forks: 9 },
   { repo: "rajatsainju2025/ml-tutorial", tag: "Tutorial", lang: "Jupyter",
     desc: "📚 Beginner-friendly notebooks that build core ML step by step", stars: 0, forks: 0 },
   { repo: "rajatsainju2025/volatility-forecasting", tag: "Research", lang: "Jupyter",
