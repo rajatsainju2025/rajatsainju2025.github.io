@@ -484,3 +484,10 @@ const SOFTWARE = [
   { repo: "rajatsainju2025/volatility-forecasting", tag: "Research", lang: "Jupyter",
     desc: "📈 Can LightGBM beat HAR and GARCH at forecasting SPY volatility?", stars: 0, forks: 0 },
 ];
+
+// Writing: essays and opinion pieces, newest first. Until there is one, writing.html says
+// "Writing will be published soon." Each post:
+//   { title: "…", date: "2026-11-30", description: "One line on what it argues.",
+//     url: "https://…" (the essay, here or where it was published), image: "assets/img/writing/….jpg",
+//     venue: "" (e.g. "Financial Times" for a piece published elsewhere) }
+const WRITING = [];

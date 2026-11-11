@@ -86,7 +86,8 @@ const ICON = {
   cv: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M6 2h9l4 4v16H6z M14 2v5h5 M9 12h7 M9 16h7"/></svg>',
 };
 
-function renderProfile() {
+// The footer every page shares: bio (home page only), links and the year.
+function renderFooter() {
   if ($("bio")) $("bio").innerHTML = SITE.bio;
   $("year").textContent = new Date().getFullYear();
   const L = SITE.links;
@@ -94,7 +95,9 @@ function renderProfile() {
     [L.github, "GitHub"], [L.scholar, "Google Scholar"], [L.linkedin, "LinkedIn"], [L.twitter, "X"],
     [SITE.email && `mailto:${SITE.email}`, SITE.email], [SITE.cv, "CV"],
   ].filter(([u]) => u).map(([u, label]) => `<li><a href="${u}">${esc(label)}</a></li>`).join("");
+}
 
+function renderProfile() {
   const years = PROJECTS.map(yearOf);
   $("stat-papers").textContent = PROJECTS.length;
   $("stat-years").textContent = `${Math.min(...years)} to ${Math.max(...years)}`;
@@ -757,6 +760,7 @@ function summarizeSoftware() {
 // ----------------------------------------------------------- live data --
 
 async function loadCitations() {
+  if (!$("stat-cites")) return;          // only the pages that show citation counts
   const ids = PROJECTS.map((p) => p.s2).filter(Boolean);
   try {
     const r = await fetch("https://api.semanticscholar.org/graph/v1/paper/batch?fields=citationCount", {
@@ -795,6 +799,22 @@ async function loadRepoStats() {
   summarizeSoftware();
 }
 
+// ---------------------------------------------------------------- writing --
+
+// Essays as cards: picture, date, title, one line. With none yet, the page says so.
+function renderWriting() {
+  const day = (iso) => new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  $("writing-soon").hidden = WRITING.length > 0;
+  $("writing-list").innerHTML = WRITING.map((p) => `<li class="post">
+    <a href="${esc(p.url)}">
+      ${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy">` : ""}
+      <p class="post-meta"><time datetime="${esc(p.date)}">${day(p.date)}</time>${p.venue ? ` · ${esc(p.venue)}` : ""}</p>
+      <h2>${esc(p.title)}</h2>
+      ${p.description ? `<p class="post-desc">${esc(p.description)}</p>` : ""}
+    </a>
+  </li>`).join("");
+}
+
 // ------------------------------------------------- reading progress, reveal --
 
 function renderChrome() {
@@ -820,7 +840,7 @@ function renderChrome() {
 }
 
 // Each part renders only on the page that has it (index.html or about.html).
-[["stats", renderProfile], ["profile", renderAbout], ["ni-svg", renderNi], ["w-bars", renderW],
+[["year", renderFooter], ["writing-list", renderWriting], ["stats", renderProfile], ["profile", renderAbout], ["ni-svg", renderNi], ["w-bars", renderW],
  ["tracker-canvas", renderTracker], ["ks-svg", renderKS], ["seg-svg", renderSeg], ["rag-steps", renderRag],
  ["timeline", renderTimeline], ["network", renderNetwork], ["index", renderIndex], ["news", renderNews],
  ["news-cards", renderNewsCards], ["software-list", renderSoftware], ["progress", renderChrome]]

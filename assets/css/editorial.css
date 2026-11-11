@@ -412,6 +412,26 @@ footer { margin-top: 140px; }
 .news-cards p { margin: 0; padding: 12px 14px 0; font-size: 17px; line-height: 1.45; flex: 1; }
 .news-cards time { padding: 12px 14px 14px; font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--ink-3); }
 
+/* ---------- writing ---------- */
+
+/* An essay index: a large title, one plain line, then the posts as cards. */
+.masthead nav a[aria-current="page"]:not(.nav-about) { color: var(--materials); text-decoration: underline; text-underline-offset: 6px; }
+.writing { padding-top: 80px; }
+.writing h1 { margin: 0; font-size: clamp(52px, 8vw, 96px); line-height: .95; font-weight: 500; letter-spacing: -.025em; }
+.writing-intro { max-width: 34em; margin: 22px 0 0; font-family: var(--sans); font-size: 19px; line-height: 1.5; color: var(--ink-3); }
+.writing-soon {
+  max-width: 880px; margin: 56px 0 0; padding: 48px 44px; border-radius: 16px; background: var(--paper-2);
+  font-style: italic; font-size: clamp(24px, 3.2vw, 32px); line-height: 1.3; color: var(--ink-2);
+}
+.posts { list-style: none; margin: 56px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 48px 32px; }
+.posts:empty { display: none; }
+.post a { display: block; color: var(--ink); text-decoration: none; }
+.post img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 14px; background: var(--paper-2); }
+.post-meta { margin: 16px 0 0; font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
+.post h2 { margin: 6px 0 0; font-size: 27px; line-height: 1.18; font-weight: 500; text-wrap: balance; }
+.post-desc { margin: 10px 0 0; font-family: var(--sans); font-size: 16px; line-height: 1.55; color: var(--ink-3); }
+.post a:hover h2, .post a:focus-visible h2 { color: var(--materials); }
+
 /* ---------- reveal on scroll ---------- */
 
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
@@ -455,9 +475,11 @@ footer { margin-top: 140px; }
   .about-block { margin-top: 64px; }
   .block, footer { margin-top: 96px; }
   .masthead nav { gap: 2px 16px; font-size: 13px; }
+  .writing { padding-top: 40px; }
 }
 @media (max-width: 520px) {
   .masthead nav a[href$="#software"], .masthead nav a[href$="#numbers"] { display: none; }
+  .writing-soon { padding: 28px 22px; }
   .lede .drop { font-size: 76px; }
   .sw-name span { display: none; }
   .sw-paper { margin-left: 0; }
